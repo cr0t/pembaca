@@ -30,9 +30,13 @@ GEM
     activesupport (3.0.0.rc)
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
+    bcrypt-ruby (2.1.2)
     bson (1.0.4)
     bson_ext (1.0.4)
     builder (2.1.2)
+    devise (1.1.1)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 0.10.7)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.4.1)
@@ -73,6 +77,8 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.22)
+    warden (0.10.7)
+      rack (>= 1.0.0)
     will_paginate (3.0.pre2)
 
 PLATFORMS
@@ -80,5 +86,6 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext (= 1.0.4)
+  devise
   mongoid (= 2.0.0.beta.15)
   rails (= 3.0.0.rc)
