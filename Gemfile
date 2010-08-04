@@ -7,7 +7,7 @@ gem "bson_ext", "1.0.4"
 
 gem "devise"
 
-gem "carrierwave"
+gem "carrierwave", :git => "http://github.com/jnicklas/carrierwave.git"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

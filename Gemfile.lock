@@ -1,3 +1,10 @@
+GIT
+  remote: http://github.com/jnicklas/carrierwave.git
+  revision: 52718d0
+  specs:
+    carrierwave (0.5.0.beta2)
+      activesupport (>= 3.0.0.beta4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -34,7 +41,6 @@ GEM
     bson (1.0.4)
     bson_ext (1.0.4)
     builder (2.1.2)
-    carrierwave (0.4.9)
     devise (1.1.1)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 0.10.7)
@@ -87,7 +93,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext (= 1.0.4)
-  carrierwave
+  carrierwave!
   devise
   mongoid (= 2.0.0.beta.15)
   rails (= 3.0.0.rc)
