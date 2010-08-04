@@ -2,16 +2,61 @@
 <html>
 <head>
   <title>Liberty</title>
+	<%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
+	<%= stylesheet_link_tag "blueprint/print", :media => "print" %>
+	<!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "jquery.rails.js" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 	
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-
-<%= yield %>
+	<div id="wrapper" class="container">
+		<div id="auth-block" class="span-24 last">
+			<%= render 'layouts/authblock' %>
+		</div>
+		
+		<div class="span-24 last">
+			<div id="logo"><a href="/">Liberty</a></div>
+		</div>
+		
+		<% if !flash.empty? %>
+			<div class="span-24 last">
+				<p class="notice"><%= notice %></p>
+				<p class="alert"><%= alert %></p>
+			</div>
+		<% end %>
+		
+		<div class="span-18">
+			<div class="span-10">
+				Box1
+			</div>
+			
+			<div class="span-4">
+				Box2
+			</div>
+			
+			<div class="span-4 last">
+				<%= link_to "Upload new book", "#" %>
+			</div>
+			
+			<div class="span-18 last">
+				<%= yield %>
+			</div>
+		</div>
+		
+		<div class="span-6 last">
+			<%= render 'layouts/sidebar' %>
+		</div>
+		
+		<div class="span-24">
+			<div class="span-4">&nbsp;</div>
+			<div class="span-16">
+				<%= link_to "About", about_path %>
+			</div>
+			<div class="span-4 last">&nbsp;</div>
+		</div>
+	</div>
 
 </body>
 </html>
