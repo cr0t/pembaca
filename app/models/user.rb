@@ -6,6 +6,6 @@ class User
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
   
-  referenced_in :upload
+  references_many :upload
 
 end

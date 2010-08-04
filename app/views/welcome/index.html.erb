@@ -2,7 +2,21 @@
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus est vitae eros ultricies malesuada. Vestibulum posuere, erat eget rhoncus interdum, leo erat condimentum diam, nec facilisis nunc dolor dapibus ligula. Cras quis accumsan ipsum. Nulla facilisi. Aliquam convallis tincidunt metus vitae tempus. Nam adipiscing malesuada feugiat. Sed sagittis mollis elit id condimentum. Vivamus porta fermentum libero, vitae ultrices mi tempus et. Sed sagittis faucibus dolor vitae ullamcorper. Nam facilisis erat vel quam lacinia faucibus. Fusce scelerisque blandit porttitor. In consequat, augue eu gravida ultrices, mauris urna luctus dolor, sed molestie felis arcu vel sem. In eu neque eget diam ullamcorper tempus. In et lorem urna, in tincidunt justo. Ut convallis auctor congue. Aenean nisi turpis, scelerisque nec suscipit eu, posuere sit amet libero.</p>
 
-<p>Proin eget tellus odio. Fusce interdum pellentesque sapien eget luctus. Nam tincidunt nulla eu massa ultrices venenatis. Vestibulum lacinia consequat lectus quis tincidunt. Donec non enim mi, eget venenatis orci. Phasellus convallis eros enim. Nam tempus varius nisi eget dapibus. Fusce ultrices imperdiet dolor, nec semper lectus tempor et. Ut mattis consectetur ligula vel lacinia. Etiam gravida interdum pellentesque. Aenean tincidunt vestibulum tellus vel tristique. Nunc quis magna at odio condimentum gravida. Nam non lorem quam, et placerat mi.</p>
+<h2>All registered users:</h2>
+
+<p>
+	<% @users.each do |user| %>
+		<%= user.email %> &mdash; <%= user.id %><br/>
+	<% end %>
+</p>
+
+<h2>All uploaded files:</h2>
+
+<p>
+	<% @uploads.each do |upload| %>
+		<%= upload.file_filename %> <small>(<%= upload.user.email %>)</small><br/>
+	<% end %>
+</p>
 
 <p>Proin metus dui, interdum vitae auctor non, hendrerit nec odio. Maecenas vitae orci eu est pellentesque hendrerit. Sed urna sapien, fringilla ac condimentum nec, imperdiet sed ipsum. Pellentesque tristique vulputate dolor, at elementum turpis mattis fringilla. Fusce eget lacus quis ipsum sagittis facilisis a sit amet lorem. Proin ultricies sagittis erat, sit amet luctus neque blandit in. Cras justo arcu, consectetur in accumsan vitae, vestibulum eget enim. Nullam a consequat mi. Vivamus scelerisque sagittis dui quis tristique. Sed malesuada ultricies laoreet. Pellentesque non justo in turpis volutpat accumsan et id odio. Suspendisse eleifend, tortor sit amet interdum dictum, lectus tortor sagittis sapien, mollis dignissim arcu lectus non lorem.</p>
 

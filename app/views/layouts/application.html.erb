@@ -11,7 +11,7 @@
 </head>
 <body>
 	
-	<div id="wrapper" class="container">
+	<div id="wrapper" class="container showgrid">
 		<div id="auth-block" class="span-24 last">
 			<%= render 'layouts/authblock' %>
 		</div>
@@ -22,22 +22,26 @@
 		
 		<% if !flash.empty? %>
 			<div class="span-24 last">
-				<p class="notice"><%= notice %></p>
-				<p class="alert"><%= alert %></p>
+				<% if !notice.nil? %>
+					<p class="notice"><%= notice %></p>
+				<% end %>
+				<% if !alert.nil? %>
+					<p class="notice alert"><%= alert %></p>
+				<% end %>
 			</div>
 		<% end %>
 		
 		<div class="span-18">
 			<div class="span-10">
-				Box1
+				<h3><%= link_to "My bookshelf", uploads_path %></h3>
 			</div>
 			
 			<div class="span-4">
-				Box2
+				<h3><%= link_to "Read last", "#" %></h3>
 			</div>
 			
 			<div class="span-4 last">
-				<%= link_to "Upload new book", "#" %>
+				<h3><%= link_to "Upload new book", new_upload_path %></h3>
 			</div>
 			
 			<div class="span-18 last">

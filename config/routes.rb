@@ -1,4 +1,6 @@
 Liberty::Application.routes.draw do
+  resources :uploads
+
   devise_for :users
 
   match "/about" => "welcome#about"
