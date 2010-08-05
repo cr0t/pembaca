@@ -1,4 +1,5 @@
 Liberty::Application.routes.draw do
+  match "/uploaded/*path" => "gridfs#serve"
   resources :uploads
 
   devise_for :users
