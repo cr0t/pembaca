@@ -5,16 +5,18 @@
 <h2>All registered users:</h2>
 
 <p>
+	<ul>
 	<% @users.each do |user| %>
-		<%= user.email %> &mdash; <%= user.id %><br/>
+		<li><%= user.email %></li>
 	<% end %>
+	</ul>
 </p>
 
-<h2>All uploaded files:</h2>
+<h2>All uploaded books:</h2>
 
 <p>
 	<% @uploads.each do |upload| %>
-		<%= upload.file_filename %> <small>(<%= upload.user.email %>)</small><br/>
+		<%= link_to image_tag("http://#{upload.static_host}/#{upload.id}/#{upload.id}-000001.png", :width => 100, :height => 130), "#" %>
 	<% end %>
 </p>
 

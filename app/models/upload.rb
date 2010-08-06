@@ -5,6 +5,9 @@ class Upload
   
   field :public, :type => Boolean, :default => true
   field :converted, :type => Boolean, :default => false
+  field :static_host, :type => String, :default => nil
+  field :total_pages, :type => Integer, :default => 0
+  field :doc_data, :type => String, :default => ""
   
   validates_presence_of :user_id
   
