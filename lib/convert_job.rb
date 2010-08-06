@@ -1,6 +1,6 @@
-require 'net/ssh'
-require 'net/scp'
-
+#require 'net/ssh'
+#require 'net/scp'
+#
 class ConvertJob
   @queue = :convert
   

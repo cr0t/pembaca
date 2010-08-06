@@ -16,10 +16,10 @@
 	<tbody>
 		<% @uploads.each do |upload| %>
 			<tr>
-				<td><%= upload.file_filename %></td>
+				<td><%= upload.file_filename[0..25] %>...</td>
 				<td><%= upload.public %></td>
 				<td><%= upload.converted %></td>
-				<td><%= upload.total_pages %></td>
+				<td><%= upload.already_converted %> / <%= upload.total_pages %></td>
 				<td><%= upload.static_host %></td>
 				<td><%= link_to 'Download', upload.file.url, :target => "_blank" %></td>
 				<td><%= link_to 'Show', upload %></td>

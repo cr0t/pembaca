@@ -11,6 +11,9 @@ gem "carrierwave", :git => "http://github.com/jnicklas/carrierwave.git"
 
 gem "resque-mongo", :require => "resque"
 
+gem "net-ssh"
+gem "net-scp"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

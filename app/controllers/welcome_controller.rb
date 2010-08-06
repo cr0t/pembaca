@@ -1,5 +1,3 @@
-require 'convert_job'
-
 class WelcomeController < ApplicationController
   def index
     @users = User.all

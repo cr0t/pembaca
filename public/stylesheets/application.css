@@ -360,10 +360,13 @@ hr.space {
 }
 .clearfix, .container { display: block; }
 .clear { clear: both; }
-#logo { font-size: 4em; }
+#logo { font-size: 3em; }
 #logo a {
   text-decoration: none;
   color: #000000;
 }
 #logo a:hover { color: #555555; }
 #auth-block { text-align: right; }
+.gray { color: #aaaaaa; }
+.t-center { text-align: center; }
+#footer { border-top: 1px solid #bbbbbb; }

@@ -50,10 +50,10 @@
 		</div>
 		
 		<div class="span-6 last">
-			<%= render 'layouts/sidebar' %>
+			<%= yield :sidebar %>
 		</div>
 		
-		<div class="span-24">
+		<div id="footer" class="span-24">
 			<div class="span-4">&nbsp;</div>
 			<div class="span-16">
 				<%= link_to "About", about_path %>

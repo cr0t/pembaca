@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liberty</title>
+	<%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
+	<%= stylesheet_link_tag "blueprint/print", :media => "print" %>
+	<!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "jquery.rails.js" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div id="wrapper" class="container">
+		<div class="span-4">
+			<strong><%= link_to "Liberty", "/" %></strong>
+		</div>
+		
+		<div class="span-10">
+			<%= yield :page_controls %>
+		</div>
+		
+		<div id="auth-block" class="span-10 last">
+			<%= render 'layouts/authblock' %>
+		</div>
+		
+		<div class="span-24 last">
+			<%= yield %>
+		</div>
+		
+		<div class="span-4">
+			<strong><%= link_to "Liberty", "/" %></strong>
+		</div>
+		
+		<div class="span-10">
+			<%= yield :page_controls %>
+		</div>
+		
+		<div id="auth-block" class="span-10 last">
+			<%= render 'layouts/authblock' %>
+		</div>
+	</div>
+</body>
+</html>

@@ -61,6 +61,9 @@ GEM
       mongo (= 1.0.6)
       tzinfo (= 0.3.22)
       will_paginate (~> 3.0.pre)
+    net-scp (1.0.2)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.0.23)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.9)
@@ -106,5 +109,7 @@ DEPENDENCIES
   carrierwave!
   devise
   mongoid (= 2.0.0.beta.15)
+  net-scp
+  net-ssh
   rails (= 3.0.0.rc)
   resque-mongo
