@@ -1,6 +1,6 @@
-#require 'net/ssh'
-#require 'net/scp'
-#
+require 'net/ssh'
+require 'net/scp'
+
 class ConvertJob
   @queue = :convert
   
@@ -32,6 +32,8 @@ class ConvertJob
     		out_file = Converter.run(filename)
     		upload_converted_file(out_file)
     		@pages_count += 1
+    		
+    		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, { "$set" => { "already_converted" => @pages_count } })
     		
     		File.delete(out_file)
     		File.delete(filename)
@@ -110,7 +112,7 @@ class Slicer
 end
 
 class Converter
-	def self.run(filename, density = 150)
+	def self.run(filename, density = 100)
 		convert_cmd = `which convert`.strip
 		
 		output_filename = filename.gsub(".pdf", "").gsub("-page", "") + ".png"
