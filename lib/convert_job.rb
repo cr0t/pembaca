@@ -118,13 +118,12 @@ class ConvertJob
   	# sends file to the remote ("static") host and unpack it there
   	def upload_and_unpack_converted_file(local_filename)
   		Net::SCP.start(@static_host, @static_user, :password => @static_pass) do |scp|
-  			scp.upload! local_filename, @static_dir + "/" + local_filename
+  		  remote_file = @static_dir + "/" + local_filename
+  			scp.upload! local_filename, remote_file
   		end
   		
   		Net::SSH.start(@static_host, @static_user, :password => @static_pass) do |ssh|
-  			ssh.exec! "cd #{@static_dir}"
-  			ssh.exec! "tar xf #{local_filename}"
-  			ssh.exec! "rm -f #{local_filename}"
+  			ssh.exec! "cd #{@static_dir} && tar xf #{local_filename} && rm -f #{local_filename}"
   		end
   	end
   end
