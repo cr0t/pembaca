@@ -3,5 +3,11 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+require 'resque/tasks'
+require 'lib/convert_job'
 
 Liberty::Application.load_tasks
+
+# need to do something with such "dirty configuration hack"
+mongoid_conf = YAML::load_file(Rails.root.join('config/mongoid.yml'))[Rails.env]
+Resque.mongo = mongoid_conf['host']

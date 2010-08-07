@@ -4,7 +4,7 @@ class UploadsController < ApplicationController
   # GET /uploads
   # GET /uploads.xml
   def index
-    @uploads = Upload.all
+    @uploads = current_user.uploads
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,6 +43,7 @@ class UploadsController < ApplicationController
   # POST /uploads.xml
   def create
     @upload = Upload.new(params[:upload])
+    @upload.user = current_user
 
     respond_to do |format|
       if @upload.save
