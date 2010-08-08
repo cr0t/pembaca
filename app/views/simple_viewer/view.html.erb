@@ -22,8 +22,16 @@
 	</div>
 <% end %>
 
-<div class="span-24 last">
-	<%= image_tag "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png", :width => "100%" %>
+<div id="left-arrow">
+	&larr;
+</div>
+
+<div id="right-arrow">
+	&rarr;
+</div>
+
+<div id="book-page-block" class="span-24 last">
+	<%= image_tag "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png", :width => "100%", :id => "book-page" %>
 </div>
 
 <% content_for :sidebar do %>
@@ -32,3 +40,40 @@
 	<h4>Pages:</h4>
 	<p><strong><%= @book.total_pages %></strong></p>
 <% end %>
+
+<script type="text/javascript">
+	var TotalPages = <%= @book.total_pages.to_i %>;
+	var CurrentPage = <%= @page.to_i %>;
+	
+	$(document).ready(function () {
+		$("#left-arrow").mouseover(function () {
+			if (CurrentPage > 1) {
+				$(this).stop().animate({ 'opacity' : '1' });
+			}
+		});
+		
+		$("#right-arrow").mouseover(function () {
+			if (CurrentPage < TotalPages) {
+				$(this).stop().animate({ 'opacity' : '1' });
+			}
+		});
+		
+		$("#left-arrow, #right-arrow").mouseout(function () {
+			$(this).stop().animate({ 'opacity' : '0' });
+		});
+		
+		$("#left-arrow").click(function () {
+			var prev_page_number = CurrentPage - 1;
+			if (prev_page_number > 0) {
+				window.location.href = window.location.href.replace(/\d+$/, prev_page_number);
+			}
+		});
+		
+		$("#right-arrow").click(function () {
+			var next_page_number = CurrentPage + 1;
+			if (next_page_number <= TotalPages) {
+				window.location.href = window.location.href.replace(/\d+$/, next_page_number);
+			}
+		});
+	});
+</script>

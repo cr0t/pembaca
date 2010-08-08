@@ -1,0 +1,46 @@
+#wrapper { position: relative; }
+.arrow {
+  position: absolute;
+  z-index: 10;
+  top: 18px;
+  width: 220px;
+  height: 730px;
+  padding-top: 500px;
+  font-size: 150px;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+#left-arrow {
+  position: absolute;
+  z-index: 10;
+  top: 18px;
+  width: 220px;
+  height: 730px;
+  padding-top: 500px;
+  font-size: 150px;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  left: 0;
+}
+#right-arrow {
+  position: absolute;
+  z-index: 10;
+  top: 18px;
+  width: 220px;
+  height: 730px;
+  padding-top: 500px;
+  font-size: 150px;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  right: 0;
+}
+#book-page-block { height: 1230px; }
