@@ -99,12 +99,13 @@ class ConvertJob
   	
   	# sets the converted flag to true and add some fields
   	def set_converted_data(static_host)
-  		doc_data = ""
-  		File.open("doc_data.txt", "r") do |file|
-  			file.each_line do |line|
-  				doc_data += line
-  			end
-  		end
+  	  doc_data = parse_doc_data
+  		#doc_data = ""
+  		#File.open("doc_data.txt", "r") do |file|
+  		#	file.each_line do |line|
+  		#		doc_data += line
+  		#	end
+  		#end
   		
   		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
   			"$set" => {
@@ -114,5 +115,31 @@ class ConvertJob
   			}
   		})
   	end
+  	
+  	# parses doc_data.txt file to array of hashes
+    def parse_doc_data
+      begin
+        raw_data = File.open("doc_data.txt", "r").read
+        ary_data = raw_data.split(/\n/)
+
+        parsed_info = []
+
+        ary_data.each_with_index do |elem, i|
+          next_elem = ary_data[i + 1]
+
+          if (elem.match(/InfoKey/) && (next_elem.match(/InfoValue/)))
+            parsed_info.push(elem.split(/\:/, 2)[1].strip => next_elem.split(/\:/, 2)[1].strip)
+          else
+            if (!elem.match(/InfoValue/))
+              parsed_info.push(elem.split(/\:/, 2)[0].strip => elem.split(/\:/, 2)[1].strip)
+            end
+          end
+        end
+      rescue
+        parsed_info = []
+      end
+
+      return parsed_info
+    end
   end
 end

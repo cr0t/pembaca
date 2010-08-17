@@ -9,7 +9,7 @@ class Upload
   field :static_host, :type => String, :default => nil
   field :total_pages, :type => Integer, :default => 0
   field :already_converted, :type => Integer, :default => 0
-  field :doc_data, :type => String, :default => ""
+  field :doc_data, :type => Array, :default => []
   
   validates_presence_of :user_id
   

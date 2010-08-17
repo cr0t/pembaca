@@ -14,6 +14,8 @@ gem "resque-mongo", :require => "resque"
 gem "net-ssh"
 gem "net-scp"
 
+gem "gravatar_image_tag"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

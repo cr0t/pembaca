@@ -7,7 +7,11 @@ Liberty::Application.routes.draw do
 
   devise_for :users
 
+  match "/terms" => "welcome#terms"
+  match "/privacy" => "welcome#privacy"
   match "/about" => "welcome#about"
+  match "/help" => "welcome#help"
+  match "/team" => "welcome#team"
   root :to => "welcome#index"
 
   # The priority is based upon order of creation:

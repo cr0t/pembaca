@@ -5,6 +5,7 @@
 	<%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
 	<%= stylesheet_link_tag "blueprint/print", :media => "print" %>
 	<!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
+	<%= stylesheet_link_tag "blueprint/plugins/fancy-type/screen", :media => "screen, projection" %>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "jquery.rails.js" %>
   <%= csrf_meta_tag %>
@@ -17,7 +18,21 @@
 		</div>
 		
 		<div class="span-24 last">
-			<div id="logo"><a href="/">Liberty</a></div>
+			<div id="logo"><a class="alt" href="/">Liberty</a></div>
+		</div>
+		
+		<div class="span24 last">
+			<div class="span-16">
+				<h3><%= link_to "My bookshelf", uploads_path %></h3>
+			</div>
+			
+			<div class="span-4">
+				<h3><%= link_to "Read last", "#" %></h3>
+			</div>
+			
+			<div class="span-4 last">
+				<h3 class="alt"><%= link_to "Upload new book", new_upload_path %></h3>
+			</div>
 		</div>
 		
 		<% if !flash.empty? %>
@@ -31,35 +46,31 @@
 			</div>
 		<% end %>
 		
-		<div class="span-18">
-			<div class="span-10">
-				<h3><%= link_to "My bookshelf", uploads_path %></h3>
-			</div>
-			
-			<div class="span-4">
-				<h3><%= link_to "Read last", "#" %></h3>
-			</div>
-			
-			<div class="span-4 last">
-				<h3><%= link_to "Upload new book", new_upload_path %></h3>
-			</div>
-			
-			<div class="span-18 last">
-				<%= yield %>
-			</div>
+		<div class="span-18 last" id="central-content">
+			<%= yield %>
 		</div>
 		
 		<div class="span-6 last">
 			<%= yield :sidebar %>
 		</div>
-		
-		<div id="footer" class="span-24">
-			<div class="span-4">&nbsp;</div>
-			<div class="span-16">
-				<%= link_to "About", about_path %>
-			</div>
-			<div class="span-4 last">&nbsp;</div>
+	</div>
+	
+	<div id="footer" class="container">
+		<div class="prepend-1 span-13 colborder">
+			<p>
+				<h3><a class="alt" href="/">Liberty <small>home</small></a></h3>
+			</p>
 		</div>
+		<div class="span-8 append-1 last">
+			<ul>
+				<li><%= link_to "Terms and Conditions", terms_path %></li>
+				<li><%= link_to "Privacy Policy", privacy_path %></li>
+				<li><%= link_to "About", about_path %></li>
+				<li><%= link_to "Help", help_path %></li>
+				<li><%= link_to "Team", team_path %></li>
+			</ul>
+    </div>
+		
 	</div>
 
 </body>

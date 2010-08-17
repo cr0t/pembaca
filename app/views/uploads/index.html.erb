@@ -18,9 +18,7 @@
 			<tr>
 				<td><%= upload.file_filename[0..25] %>...</td>
 				<td><%= upload.public %></td>
-				<% percent_done = upload.already_converted / (upload.total_pages / 100.0) %>
-				<% if percent_done.nan? then percent_done = 0; else percent_done = percent_done.round end %>
-				<td><%# = upload.converted %><%= percent_done %>%</td>
+				<td><%= converted_percent(upload) %>%</td>
 				<td><%= upload.total_pages %></td>
 				<td><%= upload.static_host %></td>
 				<% # TODO: remove 'uploaded' part from the download URL %>

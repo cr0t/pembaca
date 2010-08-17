@@ -1,5 +1,6 @@
 @import "blueprint/src/typography.css";
 @import "blueprint/src/grid.css";
+@import "sticky-footer.css";
 
 #logo {
 	font-size : 3em;
@@ -24,6 +25,10 @@
 	text-align : center;
 }
 
+#central-content {
+	min-height : 800px;
+}
+
 #quick-list {
 	a {
 		img {
@@ -35,5 +40,11 @@
 }
 
 #footer {
-	border-top : 1px solid #bbb;
+	ul {
+		li {
+			list-style : none;
+			float      : left;
+			margin-right : 1em;
+		}
+	}
 }

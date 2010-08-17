@@ -1,12 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-	Url to the file: <%= @upload.file.url %>, Converted: <%= @upload.converted? %>
-</p>
-
-<h3>doc_data.txt:</h3>
-
-<pre><%= @upload.doc_data %></pre>
+<table>
+	<tbody>
+		<tr>
+			<th>Filename</th>
+			<td><%= @upload.file_filename %></td>
+		</tr>
+		<tr>
+			<th>Public?</th>
+			<td><%= @upload.public? %></td>
+		</tr>
+		<tr>
+			<th>Converted?</th>
+			<td><%= converted_percent(@upload) %>%</td>
+		</tr>
+		<tr>
+			<th>Total Pages</th>
+			<td><%= @upload.total_pages %></td>
+		</tr>
+		<% @upload.doc_data.each do |elem| %>
+		<tr>
+			<th><%= elem.to_a[0][0] %></th>
+			<td><%= elem.to_a[0][1] %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
 
 <%= link_to 'Edit', edit_upload_path(@upload) %> |
 <%= link_to 'Back', uploads_path %>

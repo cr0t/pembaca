@@ -360,6 +360,32 @@ hr.space {
 }
 .clearfix, .container { display: block; }
 .clear { clear: both; }
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body, #wrapper { height: 100%; }
+body > #wrapper {
+  height: auto;
+  min-height: 100%;
+}
+#main { padding-bottom: 150px; }
+#footer {
+  position: relative;
+  margin-top: -150px;
+  height: 150px;
+  clear: both;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
 #logo { font-size: 3em; }
 #logo a {
   text-decoration: none;
@@ -369,9 +395,14 @@ hr.space {
 #auth-block { text-align: right; }
 .gray { color: #aaaaaa; }
 .t-center { text-align: center; }
+#central-content { min-height: 800px; }
 #quick-list a img {
   margin-right: 5px;
   border: 1px solid #aaaaaa;
   -webkit-box-shadow: 0 0 5px #000000;
 }
-#footer { border-top: 1px solid #bbbbbb; }
+#footer ul li {
+  list-style: none;
+  float: left;
+  margin-right: 1em;
+}
