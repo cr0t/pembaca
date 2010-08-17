@@ -2,6 +2,7 @@ Liberty::Application.routes.draw do
   match 'simpleviewer/:id/:page' => 'simple_viewer#view'
   
   match "/uploaded/*path" => "gridfs#serve"
+  match "/uploads/reconvert/:id" => "uploads#reconvert"
   resources :uploads
 
   devise_for :users

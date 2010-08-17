@@ -1,5 +1,4 @@
-require 'net/ssh'
-require 'net/scp'
+require 'jobs_common/static_manager'
 
 class ConvertJob
   @queue = :convert
@@ -17,16 +16,10 @@ class ConvertJob
       begin
         get_the_source_file
 
-        Slicer.run(@upload_id)
+        slice_by_pages(@upload_id)
         
-        upload_conf = YAML::load_file(Rails.root.join('config/static_servers.yml'))[Rails.env]
-
-        @static_dir  = upload_conf["servers"][0]["directory"] + @upload_id
-        @static_host = upload_conf["servers"][0]["hostname"]
-      	@static_user = upload_conf["servers"][0]["username"]
-      	@static_pass = upload_conf["servers"][0]["password"]
-
-      	prepare_upload_dir
+        @static_manager = StaticManager.new(@upload_id)
+      	@static_manager.create_upload_dir
       	
       	total_pages_to_convert = `ls *-page-*.pdf | wc -l`.strip.to_i
       	
@@ -38,8 +31,7 @@ class ConvertJob
 
         Dir.new(".").each do |filename|
         	if filename.match(/.pdf$/)
-        		out_file = Converter.run(filename, density)
-        		#upload_converted_file(out_file)
+        		out_file = convert_file(filename, density)
         		
         		converted_count += 1
         		
@@ -47,7 +39,6 @@ class ConvertJob
         		  "$set" => { "already_converted" => converted_count }
         		})
         		
-        		#File.delete(out_file)
         		File.delete(filename)
         	end
         end
@@ -59,12 +50,11 @@ class ConvertJob
         
         `tar cf #{tar_filename} *`
         
-        upload_and_unpack_converted_file(tar_filename)
+        @static_manager.upload_and_unpack_converted_file(tar_filename)
         
-        set_converted_data
+        set_converted_data(@static_manager.host)
       rescue
         # TODO: log this somewhere?
-        #puts "There are was some errors during converting this file"
         raise
       ensure
         clean_environment
@@ -84,6 +74,22 @@ class ConvertJob
   		`rm -rf /tmp/#{@upload_id}` # all sliced pages of the source file
   	end
   	
+  	def slice_by_pages(filename)
+  		pdftk_cmd = `which pdftk`.strip
+
+  		`#{pdftk_cmd} #{filename} burst output \"#{filename}-page-%06d.pdf\"`
+  	end
+  	
+  	def convert_file(filename, density = 100)
+  		convert_cmd = `which convert`.strip
+
+  		output_filename = filename.gsub(".pdf", "").gsub("-page", "") + ".png"
+
+  		`#{convert_cmd} -density #{density} "#{filename}" "#{output_filename}"`
+
+  		output_filename
+  	end
+  	
   	# moves uploaded binary file from mongo db to the local fs
   	def get_the_source_file
   		mongo_filename = @upload_id + "/" + @filename
@@ -92,7 +98,7 @@ class ConvertJob
   	end
   	
   	# sets the converted flag to true and add some fields
-  	def set_converted_data
+  	def set_converted_data(static_host)
   		doc_data = ""
   		File.open("doc_data.txt", "r") do |file|
   			file.each_line do |line|
@@ -103,48 +109,10 @@ class ConvertJob
   		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
   			"$set" => {
   				"converted"   => true,
-  				"static_host" => @static_host,
+  				"static_host" => static_host,
   				"doc_data"    => doc_data
   			}
   		})
   	end
-  	
-  	def prepare_upload_dir
-  		Net::SSH.start(@static_host, @static_user, :password => @static_pass) do |ssh|
-  			ssh.exec! "mkdir #{@static_dir}"
-  		end
-  	end
-  	
-  	# sends file to the remote ("static") host and unpack it there
-  	def upload_and_unpack_converted_file(local_filename)
-  		Net::SCP.start(@static_host, @static_user, :password => @static_pass) do |scp|
-  		  remote_file = @static_dir + "/" + local_filename
-  			scp.upload! local_filename, remote_file
-  		end
-  		
-  		Net::SSH.start(@static_host, @static_user, :password => @static_pass) do |ssh|
-  			ssh.exec! "cd #{@static_dir} && tar xf #{local_filename} && rm -f #{local_filename}"
-  		end
-  	end
   end
-end
-
-class Slicer
-	def self.run(filename)
-		pdftk_cmd = `which pdftk`.strip
-		
-		`#{pdftk_cmd} #{filename} burst output \"#{filename}-page-%06d.pdf\"`
-	end
-end
-
-class Converter
-	def self.run(filename, density = 100)
-		convert_cmd = `which convert`.strip
-		
-		output_filename = filename.gsub(".pdf", "").gsub("-page", "") + ".png"
-		
-		`#{convert_cmd} -density #{density} "#{filename}" "#{output_filename}"`
-		
-		output_filename
-	end
 end

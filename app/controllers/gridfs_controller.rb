@@ -3,7 +3,7 @@ require 'mongo'
 class GridfsController < ActionController::Metal
   def serve
     # remove the "/uploaded/" part of the path string
-    gridfs_path = env["PATH_INFO"].gsub("/uploaded/", "")
+    gridfs_path = env["PATH_INFO"].gsub("/uploaded/uploads/", "")
     begin
       gridfs_file = Mongo::GridFileSystem.new(Mongoid.database).open(gridfs_path, 'r')
       self.response_body = gridfs_file.read

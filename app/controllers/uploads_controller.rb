@@ -1,4 +1,6 @@
 class UploadsController < ApplicationController
+  include UploadsHelper
+  
   before_filter :authenticate_user!
   
   # GET /uploads
@@ -37,6 +39,13 @@ class UploadsController < ApplicationController
   # GET /uploads/1/edit
   def edit
     @upload = Upload.find(params[:id])
+  end
+  
+  # GET /uploads/reconvert/1
+  def reconvert
+    @upload = Upload.find(params[:id])
+    enqueue_convert_job(@upload._id.to_s, @upload.file_filename)
+    redirect_to(uploads_url, :notice => 'File successfully goes to the reconvertation.')
   end
 
   # POST /uploads

@@ -3,8 +3,11 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+
+# Resque tasks and Jobs classes files
 require 'resque/tasks'
 require 'lib/convert_job'
+require 'lib/clean_job'
 
 Liberty::Application.load_tasks
 
