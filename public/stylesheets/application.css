@@ -369,4 +369,9 @@ hr.space {
 #auth-block { text-align: right; }
 .gray { color: #aaaaaa; }
 .t-center { text-align: center; }
+#quick-list a img {
+  margin-right: 5px;
+  border: 1px solid #aaaaaa;
+  -webkit-box-shadow: 0 0 5px #000000;
+}
 #footer { border-top: 1px solid #bbbbbb; }

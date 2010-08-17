@@ -1,21 +1,7 @@
-<h1>Welcome#index</h1>
+<h3>All uploaded books:</h3>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus est vitae eros ultricies malesuada. Vestibulum posuere, erat eget rhoncus interdum, leo erat condimentum diam, nec facilisis nunc dolor dapibus ligula. Cras quis accumsan ipsum. Nulla facilisi. Aliquam convallis tincidunt metus vitae tempus. Nam adipiscing malesuada feugiat. Sed sagittis mollis elit id condimentum. Vivamus porta fermentum libero, vitae ultrices mi tempus et. Sed sagittis faucibus dolor vitae ullamcorper. Nam facilisis erat vel quam lacinia faucibus. Fusce scelerisque blandit porttitor. In consequat, augue eu gravida ultrices, mauris urna luctus dolor, sed molestie felis arcu vel sem. In eu neque eget diam ullamcorper tempus. In et lorem urna, in tincidunt justo. Ut convallis auctor congue. Aenean nisi turpis, scelerisque nec suscipit eu, posuere sit amet libero.</p>
-
-<h2>All registered users:</h2>
-
-<p>
-	<ul>
-	<% @users.each do |user| %>
-		<li><%= user.email %></li>
-	<% end %>
-	</ul>
-</p>
-
-<h2>All uploaded books:</h2>
-
-<p>
+<div id="quick-list">
 	<% @uploads.each do |upload| %>
 		<%= link_to image_tag("http://#{upload.static_host}/#{upload.id}/#{upload.id}-000001.png", :height => 130), "/simpleviewer/#{upload.id}/1" %>
 	<% end %>
-</p>
+</div>
