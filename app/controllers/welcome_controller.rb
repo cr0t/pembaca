@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @uploads = Upload.find(:all, :conditions => { :public => true, :converted => true }).limit(10)
+    @uploads = Upload.find(:all, :conditions => { :public => true, :converted => true })
   end
   
   def terms

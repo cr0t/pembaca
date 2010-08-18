@@ -4,19 +4,20 @@
 	<thead>
 		<tr>
 			<th>Filename</th>
+			<th>Content Type</th>
 			<th>Public?</th>
 			<th>Converted?</th>
 			<th>Pages</th>
 			<th>Host</th>
-	    <th>Download</th>
-			<th colspan="3">Actions</th>
+			<th colspan="4">Actions</th>
 	  </tr>
 	</thead>
 	
 	<tbody>
 		<% @uploads.each do |upload| %>
 			<tr>
-				<td><%= upload.file_filename[0..25] %>...</td>
+				<td><%= upload.file_filename[0..20] %><%= if upload.file_filename.size > 20 then "..."; end %></td>
+				<td><%= upload.content_type.gsub(/application\//, "") %></td>
 				<td><%= upload.public %></td>
 				<td><%= converted_percent(upload) %>%</td>
 				<td><%= upload.total_pages %></td>

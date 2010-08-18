@@ -15,6 +15,10 @@ class ConvertJob
       
       begin
         get_the_source_file
+        
+        if @content_type != 'application/pdf'
+          try_to_unoconv
+        end
 
         slice_by_pages(@upload_id)
         
@@ -64,22 +68,37 @@ class ConvertJob
     
   	protected
   	
+  	# creates new temporary working directory and chdir to it
   	def setup_environment
   		`mkdir /tmp/#{@upload_id}`
   		Dir.chdir("/tmp/" + @upload_id)
   	end
   	
-  	def clean_environment
-  		#Dir.chdir("..")
-  		`rm -rf /tmp/#{@upload_id}` # all sliced pages of the source file
+  	# moves uploaded binary file from mongo db to the local fs
+  	def get_the_source_file
+  		mongo_filename = @upload_id + "/" + @filename
+    	gridfs_file = Mongo::GridFileSystem.new(@db).open(mongo_filename, 'r')
+    	File.open(@upload_id, 'w') { |f| f.write(gridfs_file.read) }
+    	# FIXME: здесь может можно узнать contentType и у gridfs_file
+    	file = @db.collection('fs.files').find_one({ :filename => mongo_filename })
+    	@content_type = file['contentType']
   	end
   	
+  	# tryies to use unoconv to convert source file to the pdf format
+  	def try_to_unoconv
+  	  unoconv_cmd = `which unoconv`.strip
+  	  
+  		`#{unoconv_cmd} #{@upload_id} && mv #{@upload_id}.pdf #{@upload_id}`
+	  end
+  	
+  	# slice pdf source file page-by-page (to save RAM while converting it)
   	def slice_by_pages(filename)
   		pdftk_cmd = `which pdftk`.strip
 
   		`#{pdftk_cmd} #{filename} burst output \"#{filename}-page-%06d.pdf\"`
   	end
   	
+  	# runs the convert command line utility to convert pdf to png for a given file
   	def convert_file(filename, density = 100)
   		convert_cmd = `which convert`.strip
 
@@ -90,22 +109,9 @@ class ConvertJob
   		output_filename
   	end
   	
-  	# moves uploaded binary file from mongo db to the local fs
-  	def get_the_source_file
-  		mongo_filename = @upload_id + "/" + @filename
-    	gridfs_file = Mongo::GridFileSystem.new(@db).open(mongo_filename, 'r')
-    	File.open(@upload_id, 'w') { |f| f.write(gridfs_file.read) }
-  	end
-  	
   	# sets the converted flag to true and add some fields
   	def set_converted_data(static_host)
   	  doc_data = parse_doc_data
-  		#doc_data = ""
-  		#File.open("doc_data.txt", "r") do |file|
-  		#	file.each_line do |line|
-  		#		doc_data += line
-  		#	end
-  		#end
   		
   		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
   			"$set" => {
@@ -141,5 +147,10 @@ class ConvertJob
 
       return parsed_info
     end
+    
+    # removes the working directory with all working temporary files
+    def clean_environment
+  		`rm -rf /tmp/#{@upload_id}` # all sliced pages of the source file
+  	end
   end
 end

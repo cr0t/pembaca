@@ -17,6 +17,12 @@ class Upload
   
   mount_uploader :file, PdfUploader
   
+  def content_type
+    mongo_filename = _id.to_s + "/" + file_filename
+    file = Mongoid.master.collection('fs.files').find_one({ :filename => mongo_filename })
+    file['contentType']
+  end
+  
   after_save :start_convert
   before_destroy :remove_static_files
   
