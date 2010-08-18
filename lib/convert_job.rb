@@ -5,15 +5,17 @@ class ConvertJob
   
   class << self
     def perform(upload_id, filename, density = 150)
-      mongoid_conf = YAML::load_file(Rails.root.join('config/mongoid.yml'))[Rails.env]
-      
-    	@upload_id = upload_id
-    	@filename  = filename
-    	@db = Mongo::Connection.new(mongoid_conf['host']).db(mongoid_conf['database'])
-
-      setup_environment
+      @convert_errors = Array.new
       
       begin
+        mongoid_conf = YAML::load_file(Rails.root.join('config/mongoid.yml'))[Rails.env]
+
+      	@upload_id = upload_id
+      	@filename  = filename
+      	@db = Mongo::Connection.new(mongoid_conf['host']).db(mongoid_conf['database'])
+
+        setup_environment
+        
         get_the_source_file
         
         if @content_type != 'application/pdf'
@@ -26,6 +28,10 @@ class ConvertJob
       	@static_manager.create_upload_dir
       	
       	total_pages_to_convert = `ls *-page-*.pdf | wc -l`.strip.to_i
+      	
+      	if total_pages_to_convert == 0
+      	  @convert_errors.push("Can't get total pages number")
+    	  end
       	
       	@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
     			"$set" => { "total_pages" => total_pages_to_convert }
@@ -58,9 +64,10 @@ class ConvertJob
         
         set_converted_data(@static_manager.host)
       rescue
-        # TODO: log this somewhere?
+        @convert_errors.push("General converting error")
         raise
       ensure
+        set_convert_errors
         clean_environment
       end
     end
@@ -76,9 +83,13 @@ class ConvertJob
   	
   	# moves uploaded binary file from mongo db to the local fs
   	def get_the_source_file
-  		mongo_filename = @upload_id + "/" + @filename
-    	gridfs_file = Mongo::GridFileSystem.new(@db).open(mongo_filename, 'r')
-    	File.open(@upload_id, 'w') { |f| f.write(gridfs_file.read) }
+  	  begin
+  	    mongo_filename = @upload_id + "/" + @filename
+      	gridfs_file = Mongo::GridFileSystem.new(@db).open(mongo_filename, 'r')
+      	File.open(@upload_id, 'w') { |f| f.write(gridfs_file.read) }
+	    rescue
+	      @convert_errors.push("Can't get the source file from MongoDB")
+	    end
     	# FIXME: здесь может можно узнать contentType и у gridfs_file
     	file = @db.collection('fs.files').find_one({ :filename => mongo_filename })
     	@content_type = file['contentType']
@@ -88,14 +99,20 @@ class ConvertJob
   	def try_to_unoconv
   	  unoconv_cmd = `which unoconv`.strip
   	  
-  		`#{unoconv_cmd} #{@upload_id} && mv #{@upload_id}.pdf #{@upload_id}`
+  		if !system("#{unoconv_cmd} #{@upload_id} && mv #{@upload_id}.pdf #{@upload_id} 2>&1")
+  		  @convert_errors.push("Errors during running unoconv utility")
+		  end
 	  end
   	
   	# slice pdf source file page-by-page (to save RAM while converting it)
   	def slice_by_pages(filename)
   		pdftk_cmd = `which pdftk`.strip
-
-  		`#{pdftk_cmd} #{filename} burst output \"#{filename}-page-%06d.pdf\"`
+  		
+  		out = `#{pdftk_cmd} #{filename} burst output "#{filename}-page-%06d.pdf" 2>&1`
+  		
+  		if !out.empty?
+  		  @convert_errors.push("pdftk error:\n" + out)
+		  end
   	end
   	
   	# runs the convert command line utility to convert pdf to png for a given file
@@ -104,7 +121,9 @@ class ConvertJob
 
   		output_filename = filename.gsub(".pdf", "").gsub("-page", "") + ".png"
 
-  		`#{convert_cmd} -density #{density} "#{filename}" "#{output_filename}"`
+  		if !system("#{convert_cmd} -density #{density} \"#{filename}\" \"#{output_filename}\" 2>&1")
+  		  @convert_errors.push("Errors during running convert utility on file '#{filename}'")
+		  end
 
   		output_filename
   	end
@@ -112,10 +131,18 @@ class ConvertJob
   	# sets the converted flag to true and add some fields
   	def set_converted_data(static_host)
   	  doc_data = parse_doc_data
+  	  
+  	  converted = true
+  	  failed    = false
+  	  if !@convert_errors.empty?
+  	    converted = false
+  	    failed    = true
+	    end
   		
   		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
   			"$set" => {
-  				"converted"   => true,
+  				"converted"   => converted,
+  				"failed"      => failed,
   				"static_host" => static_host,
   				"doc_data"    => doc_data
   			}
@@ -143,10 +170,20 @@ class ConvertJob
         end
       rescue
         parsed_info = []
+        @convert_errors.push("There is no generated 'doc_data.txt' file during converting file")
       end
 
       return parsed_info
     end
+    
+    # sets the convert errors field if any was during converting
+  	def set_convert_errors
+  		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
+  			"$set" => {
+  				"convert_errors" => @convert_errors
+  			}
+  		})
+  	end
     
     # removes the working directory with all working temporary files
     def clean_environment

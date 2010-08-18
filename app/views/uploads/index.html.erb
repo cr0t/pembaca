@@ -1,4 +1,4 @@
-<h1>Listing uploads</h1>
+<h2 class="alt">Listing uploads</h2>
 
 <table>
 	<thead>
@@ -8,17 +8,17 @@
 			<th>Public?</th>
 			<th>Converted?</th>
 			<th>Pages</th>
-			<th>Host</th>
+			<th>Static Host</th>
 			<th colspan="4">Actions</th>
 	  </tr>
 	</thead>
 	
 	<tbody>
 		<% @uploads.each do |upload| %>
-			<tr>
+			<tr<%= if upload.convert_errors && !upload.convert_errors.empty? then " class=convert-errors"; end %>>
 				<td><%= upload.file_filename[0..20] %><%= if upload.file_filename.size > 20 then "..."; end %></td>
 				<td><%= upload.content_type.gsub(/application\//, "") %></td>
-				<td><%= upload.public %></td>
+				<td><%= if upload.public then "Yes"; else "No"; end %></td>
 				<td><%= converted_percent(upload) %>%</td>
 				<td><%= upload.total_pages %></td>
 				<td><%= upload.static_host %></td>

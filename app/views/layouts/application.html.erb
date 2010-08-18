@@ -12,46 +12,48 @@
 </head>
 <body>
 	
-	<div id="wrapper" class="container">
-		<div id="auth-block" class="span-24 last">
-			<%= render 'layouts/authblock' %>
-		</div>
-		
-		<div class="span-24 last">
-			<div id="logo"><a class="alt" href="/">Liberty</a></div>
-		</div>
-		
-		<div class="span24 last">
-			<div class="span-16">
-				<h3><%= link_to "My bookshelf", uploads_path %></h3>
+	<div id="wrapper">
+		<div id="top-container" class="container">
+			<div id="auth-block" class="span-24 last">
+				<%= render 'layouts/authblock' %>
 			</div>
-			
-			<div class="span-4">
-				<h3><%= link_to "Read last", "#" %></h3>
-			</div>
-			
-			<div class="span-4 last">
-				<h3 class="alt"><%= link_to "Upload new book", new_upload_path %></h3>
-			</div>
-		</div>
-		
-		<% if !flash.empty? %>
+
 			<div class="span-24 last">
-				<% if !notice.nil? %>
-					<p class="notice"><%= notice %></p>
-				<% end %>
-				<% if !alert.nil? %>
-					<p class="notice alert"><%= alert %></p>
-				<% end %>
+				<div id="logo"><a class="alt" href="/">Liberty</a></div>
 			</div>
-		<% end %>
-		
-		<div class="span-18 last" id="central-content">
-			<%= yield %>
-		</div>
-		
-		<div class="span-6 last">
-			<%= yield :sidebar %>
+
+			<div class="span24 last">
+				<div class="span-16">
+					<h3><%= link_to "My bookshelf", uploads_path %></h3>
+				</div>
+
+				<div class="span-4">
+					<h3><%= link_to "Read last", "#" %></h3>
+				</div>
+
+				<div class="span-4 last">
+					<h3 class="alt"><%= link_to "Upload new book", new_upload_path %></h3>
+				</div>
+			</div>
+
+			<% if !flash.empty? %>
+				<div class="span-24 last">
+					<% if !notice.nil? %>
+						<p class="notice"><%= notice %></p>
+					<% end %>
+					<% if !alert.nil? %>
+						<p class="notice alert"><%= alert %></p>
+					<% end %>
+				</div>
+			<% end %>
+
+			<div class="span-18 last" id="central-content">
+				<%= yield %>
+			</div>
+
+			<div class="span-6 last">
+				<%= yield :sidebar %>
+			</div>
 		</div>
 	</div>
 	

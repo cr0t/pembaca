@@ -5,11 +5,13 @@ class Upload
   include UploadsHelper
   
   field :public, :type => Boolean, :default => true
-  field :converted, :type => Boolean, :default => false
-  field :static_host, :type => String, :default => nil
   field :total_pages, :type => Integer, :default => 0
-  field :already_converted, :type => Integer, :default => 0
   field :doc_data, :type => Array, :default => []
+  field :converted, :type => Boolean, :default => false
+  field :failed, :type => Boolean, :default => false
+  field :already_converted, :type => Integer, :default => 0
+  field :static_host, :type => String, :default => nil
+  field :convert_errors, :type => Array, :default => []
   
   validates_presence_of :user_id
   

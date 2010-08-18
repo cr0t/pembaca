@@ -369,11 +369,11 @@ body > #wrapper {
   height: auto;
   min-height: 100%;
 }
-#main { padding-bottom: 150px; }
+#top-container { padding-bottom: 70px; }
 #footer {
   position: relative;
-  margin-top: -150px;
-  height: 150px;
+  margin-top: -70px;
+  height: 70px;
   clear: both;
 }
 .clearfix:after {
@@ -395,7 +395,7 @@ body > #wrapper {
 #auth-block { text-align: right; }
 .gray { color: #aaaaaa; }
 .t-center { text-align: center; }
-#central-content { min-height: 800px; }
+.convert-errors { background-color: #ff8888; }
 #quick-list a img {
   margin-right: 5px;
   border: 1px solid #aaaaaa;

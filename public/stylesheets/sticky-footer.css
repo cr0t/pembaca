@@ -1,6 +1,6 @@
-/*  
+/*
 Sticky Footer Solution
-by Steve Hatcher 
+by Steve Hatcher
 http://stever.ca
 http://www.cssstickyfooter.com
 */
@@ -23,14 +23,14 @@ body > #wrapper {
 	min-height : 100%;
 }
 
-#main {
-	padding-bottom : 30px; /* must be same height as the footer */
+#top-container {
+	padding-bottom : 70px; /* must be same height as the footer */
 }
 
 #footer {
 	position   : relative;
-	margin-top : -30px; /* negative value of footer height */
-	height     : 30px;
+	margin-top : -70px; /* negative value of footer height */
+	height     : 70px;
 	clear      : both;
 }
 
