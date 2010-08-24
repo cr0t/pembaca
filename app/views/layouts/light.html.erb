@@ -23,20 +23,14 @@
 			<%= render 'layouts/authblock' %>
 		</div>
 		
-		<div class="span-24 last">
-			<%= yield %>
-		</div>
-		
-		<div class="span-4">
-			<strong><%= link_to "Liberty", "/" %></strong>
-		</div>
-		
-		<div class="span-10">
-			<%= yield :page_controls %>
-		</div>
-		
-		<div id="auth-block" class="span-10 last">
-			<%= render 'layouts/authblock' %>
+		<div class="container">
+			<div class="span-18" id="central-content">
+				<%= yield %>
+			</div>
+
+			<div class="span-6 last">
+				<%= yield :sidebar %>
+			</div>
 		</div>
 	</div>
 </body>

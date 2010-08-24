@@ -2,19 +2,25 @@
 	position : relative;
 }
 
+.prev, .next {
+	font-weight : bold;
+	color       : #c44;
+	
+	a {
+		color : #c44;
+	}
+}
+
 .arrow {
 	position         : absolute;
 	z-index          : 10;
 	top              : 18px;
 	width            : 220px;
-	height           : 730px;
-	padding-top      : 500px;
 	font-size        : 150px;
 	text-align       : center;
 	color            : #fff;
 	opacity          : 0;
 	background-color : rgba(0, 0, 0, 0.25); /* прозрачный фон, но текст блока остается непрозрачным */
-	cursor           : pointer;
 }
 
 #left-arrow {
@@ -28,5 +34,9 @@
 }
 
 #book-page-block {
-	height : 1230px;
+	/*height : 1230px;*/
+}
+
+.book-page-thumb {
+	border : 1px solid #ccc;
 }

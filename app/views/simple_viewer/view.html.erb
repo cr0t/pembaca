@@ -1,6 +1,6 @@
 <% content_for :page_controls do %>
 	<div class="span-10 t-center">
-		<div class="span-3">
+		<div class="span-3 prev">
 			<% if @page.to_i > 1 %>
 				&larr; <%= link_to "Previous", "/simpleviewer/#{@book.id}/#{@page.to_i - 1}" %>
 			<% else %>
@@ -12,7 +12,7 @@
 			Page <%= @page.to_i %> of <%= @book.total_pages %>
 		</div>
 
-		<div class="span-3 last">
+		<div class="span-3 last next">
 			<% if @page.to_i <= @book.total_pages - 1 %>
 				<%= link_to "Next", "/simpleviewer/#{@book.id}/#{@page.to_i + 1}" %> &rarr;
 			<% else %>
@@ -30,13 +30,13 @@
 	&rarr;
 </div>
 
-<div id="book-page-block" class="span-24 last">
+<div id="book-page-block">
 	<%= image_tag "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png", :width => "100%", :id => "book-page" %>
 </div>
 
 <% content_for :sidebar do %>
 	<h3 class="gray">Book:</h3>
-	<p><strong><%= @book.file_filename %></strong></p>
+	<p><strong><%= @book.file_filename[0..35] %>...</strong></p>
 	<h4>Pages:</h4>
 	<p><strong><%= @book.total_pages %></strong></p>
 <% end %>
@@ -44,8 +44,14 @@
 <script type="text/javascript">
 	var TotalPages = <%= @book.total_pages.to_i %>;
 	var CurrentPage = <%= @page.to_i %>;
+	var PageHeight = $("#book-page-block")[0].clientHeight;
 	
 	$(document).ready(function () {
+		/*$("#left-arrow, #right-arrow")
+			.css("height", PageHeight / 2 + 50)
+			.css("padding-top", PageHeight / 2 - 50)
+			.css("cursor", "pointer");
+		
 		$("#left-arrow").mouseover(function () {
 			if (CurrentPage > 1) {
 				$(this).stop().animate({ 'opacity' : '1' });
@@ -74,6 +80,6 @@
 			if (next_page_number <= TotalPages) {
 				window.location.href = window.location.href.replace(/\d+$/, next_page_number);
 			}
-		});
+		});*/
 	});
 </script>

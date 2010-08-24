@@ -1,31 +1,35 @@
 #wrapper { position: relative; }
+.prev {
+  font-weight: bold;
+  color: #cc4444;
+}
+.prev a { color: #cc4444; }
+.next {
+  font-weight: bold;
+  color: #cc4444;
+}
+.next a { color: #cc4444; }
 .arrow {
   position: absolute;
   z-index: 10;
   top: 18px;
   width: 220px;
-  height: 730px;
-  padding-top: 500px;
   font-size: 150px;
   text-align: center;
   color: #ffffff;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.25);
-  cursor: pointer;
 }
 #left-arrow {
   position: absolute;
   z-index: 10;
   top: 18px;
   width: 220px;
-  height: 730px;
-  padding-top: 500px;
   font-size: 150px;
   text-align: center;
   color: #ffffff;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.25);
-  cursor: pointer;
   left: 0;
 }
 #right-arrow {
@@ -33,14 +37,11 @@
   z-index: 10;
   top: 18px;
   width: 220px;
-  height: 730px;
-  padding-top: 500px;
   font-size: 150px;
   text-align: center;
   color: #ffffff;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.25);
-  cursor: pointer;
   right: 0;
 }
-#book-page-block { height: 1230px; }
+.book-page-thumb { border: 1px solid #cccccc; }
