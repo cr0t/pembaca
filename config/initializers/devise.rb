@@ -3,7 +3,13 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "noreply@liberty.summercode.com"
+  config.mailer_sender = "noreply@pembaca.summercode.com"
+  
+  config.oauth :facebook, '110135259043277', 'd8af47c38dd99cef944e414d5b4011ef',
+  :site              => 'https://graph.facebook.com/',
+  :authorize_path    => '/oauth/authorize',
+  :access_token_path => '/oauth/access_token',
+  :scope             => %w(email)
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

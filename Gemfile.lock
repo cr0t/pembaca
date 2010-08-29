@@ -43,6 +43,7 @@ GEM
       activemodel (= 3.0.0.rc)
       activesupport (= 3.0.0.rc)
     activesupport (3.0.0.rc)
+    addressable (2.2.0)
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
     bcrypt-ruby (2.1.2)
@@ -51,6 +52,9 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    faraday (0.4.6)
+      addressable (>= 2.1.1)
+      rack (>= 1.0.1)
     gravatar_image_tag (0.1.0)
     i18n (0.4.1)
     json (1.4.5)
@@ -67,9 +71,13 @@ GEM
       mongo (= 1.0.7)
       tzinfo (= 0.3.22)
       will_paginate (~> 3.0.pre)
+    multi_json (0.0.4)
     net-scp (1.0.2)
       net-ssh (>= 1.99.1)
     net-ssh (2.0.23)
+    oauth2 (0.0.13)
+      faraday (~> 0.4.1)
+      multi_json (>= 0.0.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.9)
@@ -118,5 +126,6 @@ DEPENDENCIES
   mongoid (= 2.0.0.beta.16)
   net-scp
   net-ssh
+  oauth2
   rails (= 3.0.0.rc)
   resque-mongo
