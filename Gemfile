@@ -5,7 +5,7 @@ gem 'rails', '3.0.0.rc'
 gem "mongoid", "2.0.0.beta.16"
 gem "bson_ext", "1.0.4"
 
-gem "devise"
+gem "devise", :git => "http://github.com/plataformatec/devise.git"
 
 gem "carrierwave", :git => "http://github.com/jnicklas/carrierwave.git"
 
