@@ -4,7 +4,7 @@ class User
   # :token_authenticatable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :uauthable
+         :confirmable, :oauthable
   
   references_many :uploads, :dependent => :delete
 end
