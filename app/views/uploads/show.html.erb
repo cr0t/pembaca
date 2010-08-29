@@ -22,12 +22,6 @@
 			<th>Total Pages</th>
 			<td><%= @upload.total_pages %></td>
 		</tr>
-		<% @upload.doc_data.each do |elem| %>
-		<tr>
-			<th><%= elem.to_a[0][0] %></th>
-			<td><%= elem.to_a[0][1] %></td>
-		</tr>
-		<% end %>
 		<% if @upload.convert_errors && !@upload.convert_errors.empty? %>
 		<tr class="convert-errors">
 			<th style="vertical-align:top;">Converter errors:</th>
@@ -38,6 +32,12 @@
 					<% end %>
 				</ul>
 			</td>
+		</tr>
+		<% end %>
+		<% @upload.doc_data.each do |elem| %>
+		<tr>
+			<th><%= elem.to_a[0][0] %></th>
+			<td><%= elem.to_a[0][1] %></td>
 		</tr>
 		<% end %>
 	</tbody>

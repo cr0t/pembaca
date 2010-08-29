@@ -1,14 +1,22 @@
 #wrapper { position: relative; }
 .prev {
+  font-size: 1.4em;
   font-weight: bold;
-  color: #cc4444;
 }
-.prev a { color: #cc4444; }
+.prev a {
+  color: #000000;
+  text-decoration: none;
+}
+.prev a:hover { text-decoration: underline; }
 .next {
+  font-size: 1.4em;
   font-weight: bold;
-  color: #cc4444;
 }
-.next a { color: #cc4444; }
+.next a {
+  color: #000000;
+  text-decoration: none;
+}
+.next a:hover { text-decoration: underline; }
 .arrow {
   position: absolute;
   z-index: 10;
@@ -44,4 +52,10 @@
   background-color: rgba(0, 0, 0, 0.25);
   right: 0;
 }
-.book-page-thumb { border: 1px solid #cccccc; }
+#book-page-block { -webkit-box-shadow: 1px 0 3px #aaaaaa; }
+#thumbnails {
+  height: 745px;
+  overflow: auto;
+}
+#thumbnails img { border: 1px solid #cccccc; }
+#thumbnails img.current { border: 1px solid #5555ff; }

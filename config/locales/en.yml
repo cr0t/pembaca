@@ -3,3 +3,12 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    submit:
+      upload:
+        create: "Upload"
+        update: "Update"
+    label:
+      upload:
+        file: "Please select your local file to upload"
+        public: "Do you want to make this book public?"

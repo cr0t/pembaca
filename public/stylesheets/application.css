@@ -396,11 +396,21 @@ body > #wrapper {
 .gray { color: #aaaaaa; }
 .t-center { text-align: center; }
 .convert-errors { background-color: #ff8888; }
-#quick-list a img {
-  margin-right: 5px;
-  border: 1px solid #aaaaaa;
-  -webkit-box-shadow: 0 0 5px #000000;
+.bookshelf {
+  background: url(/images/bookshelf-background.jpg) repeat-y;
+  padding: 12px;
 }
+#public-books { height: 774px; }
+#public-books .book-thumb {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 22px;
+}
+#public-books a img {
+  border: 1px solid #aaaaaa;
+  -webkit-box-shadow: 0 0 4px #555555;
+}
+#public-books a:hover img { opacity: 0.8; }
 #footer ul li {
   list-style: none;
   float: left;

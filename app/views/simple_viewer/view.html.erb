@@ -1,6 +1,6 @@
 <% content_for :page_controls do %>
 	<div class="span-10 t-center">
-		<div class="span-3 prev">
+		<div class="span-3 prev alt">
 			<% if @page.to_i > 1 %>
 				&larr; <%= link_to "Previous", "/simpleviewer/#{@book.id}/#{@page.to_i - 1}" %>
 			<% else %>
@@ -12,7 +12,7 @@
 			Page <%= @page.to_i %> of <%= @book.total_pages %>
 		</div>
 
-		<div class="span-3 last next">
+		<div class="span-3 last next alt">
 			<% if @page.to_i <= @book.total_pages - 1 %>
 				<%= link_to "Next", "/simpleviewer/#{@book.id}/#{@page.to_i + 1}" %> &rarr;
 			<% else %>
@@ -37,8 +37,16 @@
 <% content_for :sidebar do %>
 	<h3 class="gray">Book:</h3>
 	<p><strong><%= @book.file_filename[0..35] %>...</strong></p>
+	
 	<h4>Pages:</h4>
 	<p><strong><%= @book.total_pages %></strong></p>
+	
+	<h4>Thumbnails:</h4>
+	<div id="thumbnails">
+		<% 1.upto(@book.total_pages) do |page_num| %>
+			<%= link_to image_tag(thumbnail_url(@book, page_num), :height => 105, :class => (page_num == @page.to_i) ? "current" : ""), "/simpleviewer/#{@book.id}/#{page_num}" %>
+		<% end %>
+	</div>
 <% end %>
 
 <script type="text/javascript">

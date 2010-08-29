@@ -19,4 +19,9 @@ module UploadsHelper
 		  percent_done.round
 		end
   end
+  
+  def thumbnail_url(upload, page = 1, height = 130)
+    page = page.to_s.rjust(6, "0")
+    "http://#{upload.static_host}/#{upload.id}/#{upload.id}-#{page}-thumb-height-#{height}.png"
+  end
 end

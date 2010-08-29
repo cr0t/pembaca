@@ -3,11 +3,14 @@
 }
 
 .prev, .next {
+	font-size   : 1.4em;
 	font-weight : bold;
-	color       : #c44;
-	
 	a {
-		color : #c44;
+		color           : #000;
+		text-decoration : none;
+	}
+	a:hover {
+		text-decoration : underline;
 	}
 }
 
@@ -34,9 +37,19 @@
 }
 
 #book-page-block {
-	/*height : 1230px;*/
+	-webkit-box-shadow : 1px 0 3px #aaa;
 }
 
-.book-page-thumb {
-	border : 1px solid #ccc;
+
+#thumbnails {
+	height   : 745px;
+	overflow : auto;
+	
+	img {
+		border : 1px solid #ccc;
+	}
+	
+	img.current {
+		border : 1px solid #55f;
+	}
 }

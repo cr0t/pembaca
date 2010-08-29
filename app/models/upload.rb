@@ -25,7 +25,18 @@ class Upload
     file['contentType']
   end
   
-  after_save :start_convert
+  def reset_to_defaults
+    self.converted         = false
+    self.total_pages       = 0
+    self.doc_data          = []
+    self.failed            = false
+    self.already_converted = 0
+    self.static_host       = nil
+    self.convert_errors    = []
+    save!
+  end
+  
+  after_create :start_convert
   before_destroy :remove_static_files
   
   protected

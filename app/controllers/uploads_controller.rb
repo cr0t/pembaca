@@ -44,6 +44,7 @@ class UploadsController < ApplicationController
   # GET /uploads/reconvert/1
   def reconvert
     @upload = Upload.find(params[:id])
+    @upload.reset_to_defaults
     enqueue_convert_job(@upload._id.to_s, @upload.file_filename)
     redirect_to(uploads_url, :notice => 'File successfully goes to the reconvertation.')
   end

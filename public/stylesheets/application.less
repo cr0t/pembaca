@@ -32,12 +32,30 @@
 #central-content {
 }
 
-#quick-list {
+.bookshelf {
+	background : url(/images/bookshelf-background.jpg) repeat-y;
+	padding    : 12px;
+}
+
+#public-books {
+	height     : 266 * 3 - 24px;
+	
+	.book-thumb {
+		float         : left;
+		margin-right  : 5px;
+		margin-bottom : 22px;
+	}
+	
 	a {
 		img {
-			margin-right       : 5px;
 			border             : 1px solid #aaa;
-			-webkit-box-shadow : 0 0 5px #000;
+			-webkit-box-shadow : 0 0 4px #555;
+		}
+	}
+	
+	a:hover {
+		img {
+			opacity : .8;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Liberty</title>
+  <title>Pembaca</title>
 	<%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
 	<%= stylesheet_link_tag "blueprint/print", :media => "print" %>
 	<!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="span-24 last">
-				<div id="logo"><a class="alt" href="/">Liberty</a></div>
+				<div id="logo"><%= link_to "Pembaca", "/", :class => :alt %></div>
 			</div>
 
 			<div class="span24 last">
@@ -28,7 +28,7 @@
 				</div>
 
 				<div class="span-4">
-					<h3><%= link_to "Read last", "#" %></h3>
+					<h3><%= link_to "Read last", '/last' %></h3>
 				</div>
 
 				<div class="span-4 last">
@@ -59,7 +59,7 @@
 	
 	<div id="footer" class="container">
 		<div class="prepend-1 span-13 colborder">
-			<h3><a class="alt" href="/">Liberty <small>home</small></a></h3>
+			<h3><a class="alt" href="/">Pembaca <small>home</small></a></h3>
 		</div>
 		<div class="span-8 append-1 last">
 			<ul>

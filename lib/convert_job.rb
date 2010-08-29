@@ -42,6 +42,7 @@ class ConvertJob
         Dir.new(".").each do |filename|
         	if filename.match(/.pdf$/)
         		out_file = convert_file(filename, density)
+        		create_thumb(out_file)
         		
         		converted_count += 1
         		
@@ -116,7 +117,7 @@ class ConvertJob
   	end
   	
   	# runs the convert command line utility to convert pdf to png for a given file
-  	def convert_file(filename, density = 100)
+  	def convert_file(filename, density = 150)
   		convert_cmd = `which convert`.strip
 
   		output_filename = filename.gsub(".pdf", "").gsub("-page", "") + ".png"
@@ -127,6 +128,19 @@ class ConvertJob
 
   		output_filename
   	end
+  	
+  	# converts the page image file to the thumbnailed version (resized by height)
+  	def create_thumb(filename, height = 130)
+  	  convert_cmd = `which convert`.strip
+  	  
+  	  output_filename = filename.gsub(".png", "") + "-thumb-height-#{height}.png"
+  	  
+  	  if !system("#{convert_cmd} -resize 'x#{height}' \"#{filename}\" \"#{output_filename}\" 2>&1")
+  		  @convert_errors.push("Errors during running convert utility (thumbnailing) on file '#{filename}'")
+		  end
+
+  		output_filename
+	  end
   	
   	# sets the converted flag to true and add some fields
   	def set_converted_data(static_host)

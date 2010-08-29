@@ -1,5 +1,6 @@
 Liberty::Application.routes.draw do
   match 'simpleviewer/:id/:page' => 'simple_viewer#view'
+  match '/last' => 'simple_viewer#view_last_book'
   
   match "/uploaded/*path" => "gridfs#serve"
   match "/uploads/reconvert/:id" => "uploads#reconvert"

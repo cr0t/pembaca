@@ -11,11 +11,15 @@
     </div>
   <% end %>
 
-	<%= f.label :file %>
-	<%= f.file_field :file %>
+	<div>
+		<%= f.label :file %>
+		<%= f.file_field :file %>
+	</div>
 	
-	<%= f.label :public %>
-	<%= f.check_box :public %>
+	<div>
+		<%= f.label :public %>
+		<%= f.check_box :public %>
+	</div>
 
   <div class="actions">
     <%= f.submit %>

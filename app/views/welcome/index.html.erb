@@ -1,5 +1,11 @@
-<div id="quick-list">
-	<% @uploads.each do |upload| %>
-		<%= link_to image_tag("http://#{upload.static_host}/#{upload.id}/#{upload.id}-000001.png", :height => 130), "/simpleviewer/#{upload.id}/1" %>
-	<% end %>
+<h3 class="alt">Public books:</h3>
+
+<div class="bookshelf">
+	<div id="public-books">
+		<% @uploads.each do |upload| %>
+			<div class="book-thumb">
+				<%= link_to image_tag(thumbnail_url(upload), :height => 105), "/simpleviewer/#{upload.id}/1" %>
+			</div>
+		<% end %>
+	</div>
 </div>
