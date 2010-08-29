@@ -6,6 +6,8 @@ gem "mongoid", "2.0.0.beta.16"
 gem "bson_ext", "1.0.4"
 
 gem "devise"
+gem "devise_facebook_connectable"
+gem "facebooker"
 
 gem "carrierwave", :git => "http://github.com/jnicklas/carrierwave.git"
 

@@ -2,6 +2,8 @@ require 'carrierwave/orm/mongoid'
 
 class Upload
   include Mongoid::Document
+  include Mongoid::Timestamps
+  
   include UploadsHelper
   
   field :public, :type => Boolean, :default => true

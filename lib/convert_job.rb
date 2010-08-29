@@ -64,8 +64,8 @@ class ConvertJob
         @static_manager.upload_and_unpack_converted_file(tar_filename)
         
         set_converted_data(@static_manager.host)
-      rescue
-        @convert_errors.push("General converting error")
+      rescue Exception => e
+        @convert_errors.push("General converting error: " + e.message)
         raise
       ensure
         set_convert_errors
@@ -100,7 +100,15 @@ class ConvertJob
   	def try_to_unoconv
   	  unoconv_cmd = `which unoconv`.strip
   	  
-  		if !system("#{unoconv_cmd} #{@upload_id} && mv #{@upload_id}.pdf #{@upload_id} 2>&1")
+  	  unoconv_cmd.empty? and raise "There is no 'unoconv' utility on this worker"
+  	  
+  	  # changing last 3 characters to "pdf"
+  		pdf_filename = @filename.dup
+  		pdf_filename[-3, 3] = "pdf"
+  		
+  		cmd = "mv '#{@upload_id}' '#{@filename}' && #{unoconv_cmd} -f pdf '#{@filename}' && rm -f '#{@filename}' && mv '#{pdf_filename}' '#{@upload_id}' 2>&1"
+  	  
+  		if !system(cmd)
   		  @convert_errors.push("Errors during running unoconv utility")
 		  end
 	  end
@@ -108,6 +116,8 @@ class ConvertJob
   	# slice pdf source file page-by-page (to save RAM while converting it)
   	def slice_by_pages(filename)
   		pdftk_cmd = `which pdftk`.strip
+  		
+  		pdftk_cmd.empty? and raise "There is no 'pdftk' utility on this worker"
   		
   		out = `#{pdftk_cmd} #{filename} burst output "#{filename}-page-%06d.pdf" 2>&1`
   		
@@ -119,6 +129,8 @@ class ConvertJob
   	# runs the convert command line utility to convert pdf to png for a given file
   	def convert_file(filename, density = 150)
   		convert_cmd = `which convert`.strip
+  		
+  		convert_cmd.empty? and raise "There is no 'convert' utility on this worker"
 
   		output_filename = filename.gsub(".pdf", "").gsub("-page", "") + ".png"
 
