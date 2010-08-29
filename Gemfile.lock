@@ -44,18 +44,11 @@ GEM
     devise (1.1.1)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 0.10.7)
-    devise_facebook_connectable (0.2.2)
-      activesupport (>= 2.3.0)
-      devise (>= 1.0.0)
-      facebooker (>= 1.0.55)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    facebooker (1.0.75)
-      json_pure (>= 1.0.0)
     gravatar_image_tag (0.1.0)
     i18n (0.4.1)
     json (1.4.5)
-    json_pure (1.4.6)
     mail (2.2.5)
       activesupport (>= 2.3.6)
       mime-types
@@ -116,8 +109,6 @@ DEPENDENCIES
   bson_ext (= 1.0.4)
   carrierwave!
   devise
-  devise_facebook_connectable
-  facebooker
   gravatar_image_tag
   mongoid (= 2.0.0.beta.16)
   net-scp
