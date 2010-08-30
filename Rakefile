@@ -9,7 +9,7 @@ require 'resque/tasks'
 require 'lib/convert_job'
 require 'lib/clean_job'
 
-Liberty::Application.load_tasks
+Pembaca::Application.load_tasks
 
 # need to do something with such "dirty configuration hack"
 mongoid_conf = YAML::load_file(Rails.root.join('config/mongoid.yml'))[Rails.env]

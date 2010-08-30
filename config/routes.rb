@@ -1,4 +1,4 @@
-Liberty::Application.routes.draw do
+Pembaca::Application.routes.draw do
   match 'simpleviewer/:id/:page' => 'simple_viewer#view'
   match '/last' => 'simple_viewer#view_last_book'
   

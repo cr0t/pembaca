@@ -12,7 +12,7 @@ development:
 
 test:
   <<: *defaults
-  database: liberty_test
+  database: pembaca_test
 
 # set these environment variables on your prod server
 production:
