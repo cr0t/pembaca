@@ -61,6 +61,7 @@
   right: 0;
 }
 #book-page-block #right-arrow .symbol { padding-top: 300px; }
+.control { margin: 0px 0px 1.5em; }
 #thumbnails {
   height: 500px;
   overflow: auto;
@@ -71,3 +72,16 @@
   border: 1px solid #cccccc;
 }
 #thumbnails img.current { border: 1px solid #5555ff; }
+.sticker {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  z-index: 200;
+  padding: 2px;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.85);
+  -webkit-box-shadow: 1px 0 3px #aaaaaa;
+  height: 150px;
+  width: 150px;
+}

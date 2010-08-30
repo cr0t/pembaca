@@ -34,16 +34,30 @@
 	<p><strong><%= if @book.name.nil? then @book.file_filename[0..35] + "..."; else @book.name; end %></strong></p>
 	
 	<h4>Zoom:</h4>
-	<p><input type="button" id="magnify-enabler" name="magnify-enabler" value="Enable Magnifier"/></p>
+	<div id="zoom-control" class="control">
+		<input type="button" id="magnify-enabler" name="magnify-enabler" value="Enable Magnifier"/>
+	</div>
 	
-	<div id="thumbnails">
+	<div id="thumbnails" class="control">
 		<% 1.upto(@book.total_pages) do |page_num| %>
 			<%= link_to image_tag(thumbnail_url(@book, page_num), :height => 105, :class => (page_num == @page.to_i) ? "current" : ""), "/simpleviewer/#{@book.id}/#{page_num}" %>
 		<% end %>
 	</div>
+	
+	<h4>Stickers:</h4>
+	<div id="stickers-control" class="control">
+		<div>
+			<label for="public-stickers-enabler">Show public stickers?</label>
+			<input type="checkbox" id="public-stickers-enabler" name="public-stickers-enabler" checked/>
+		</div>
+		<div>
+			<input type="button" id="add-sticker" value="Add new sticker"/>
+		</div>
+	</div>
 <% end %>
 
 <script type="text/javascript">
+/*<![CDATA[*/
 	var total_pages  = <%= @book.total_pages.to_i %>;
 	var current_page = <%= @page.to_i %>;
 	var magnify_src  = "<%= "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png" %>";
@@ -66,6 +80,42 @@
 			);
 		});
 		
+		prepare_stickers();
+		
+		prepare_arrows();
+	});
+	
+	/**
+	 * Prepare stickers controls and event handlers
+	 */
+	function prepare_stickers() {
+		$("#add-sticker").click(function () {
+			var sticker_text = prompt("Please, input sticker text below");
+			var sticker = $("<div class=\"sticker\">" + sticker_text + "</div>");
+			$("#book-page-block").append(sticker);
+			
+			sticker.draggable({
+				stop : function(event, ui) {
+					console.log(ui);
+				}
+			});
+			
+			sticker.dblclick(function () {
+				var text = $(this).text();
+				$(this).html('');
+				$("<textarea style=\"height:100px;width:138px;\">" + text + "</textarea><input type=\"button\" value=\"Update\" onclick=\"alert('Update clicked!')\"/>").appendTo($(this));
+			});
+		});
+		
+		$(".sticker").live("click", function() {
+			
+		});
+	}
+	
+	/**
+	 * Prepare arrows elements, add event handlers for them
+	 */
+	function prepare_arrows() {
 		$("#left-arrow").mouseover(function () {
 			if (current_page > 1) {
 				$(this).stop().animate({ 'opacity' : '1' }).css('cursor', 'pointer');
@@ -95,5 +145,6 @@
 				window.location.href = window.location.href.replace(/\d+$/, next_page_number);
 			}
 		});
-	});
+	}
+/*]]>*/
 </script>
