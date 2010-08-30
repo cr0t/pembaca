@@ -1,7 +1,3 @@
-#wrapper {
-	position : relative;
-}
-
 .prev, .next {
 	font-size   : 1.4em;
 	font-weight : bold;
@@ -16,36 +12,44 @@
 
 .arrow {
 	position         : absolute;
-	z-index          : 10;
-	top              : 18px;
+	z-index          : 100;
+	top              : 0;
 	width            : 220px;
+	height           : 100%;
 	font-size        : 150px;
 	text-align       : center;
 	color            : #fff;
 	opacity          : 0;
-	background-color : rgba(0, 0, 0, 0.25); /* прозрачный фон, но текст блока остается непрозрачным */
-}
-
-#left-arrow {
-	.arrow;
-	left : 0;
-}
-
-#right-arrow {
-	.arrow;
-	right : 0;
+	background-color : rgba(0, 0, 0, 0.15); /* прозрачный фон, но текст блока остается непрозрачным */
+	
+	.symbol {
+		padding-top : 300px;
+	}
 }
 
 #book-page-block {
+	position : relative;
 	-webkit-box-shadow : 1px 0 3px #aaa;
+	
+	#left-arrow {
+		.arrow;
+		left : 0;
+	}
+
+	#right-arrow {
+		.arrow;
+		right : 0;
+	}
 }
 
 
 #thumbnails {
-	height   : 745px;
+	height   : 500px;
 	overflow : auto;
 	
 	img {
+		width  : 80px;
+		height : 105px;
 		border : 1px solid #ccc;
 	}
 	

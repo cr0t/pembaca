@@ -391,7 +391,7 @@ body > #wrapper {
   text-decoration: none;
   color: #000000;
 }
-#logo a:hover { color: #555555; }
+#logo span { font-size: 0.4em; }
 #auth-block { text-align: right; }
 .gray { color: #aaaaaa; }
 .t-center { text-align: center; }

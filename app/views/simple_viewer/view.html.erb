@@ -22,26 +22,20 @@
 	</div>
 <% end %>
 
-<div id="left-arrow">
-	&larr;
-</div>
-
-<div id="right-arrow">
-	&rarr;
-</div>
-
 <div id="book-page-block">
+	<!--<div id="left-arrow"><div class="symbol">&larr;</div></div>
+	<div id="right-arrow"><div class="symbol">&rarr;</div></div>-->
+	
 	<%= image_tag "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png", :width => "100%", :id => "book-page" %>
 </div>
 
 <% content_for :sidebar do %>
-	<h3 class="gray">Book:</h3>
+	<h4>Book:</h4>
 	<p><strong><%= @book.file_filename[0..35] %>...</strong></p>
 	
-	<h4>Pages:</h4>
-	<p><strong><%= @book.total_pages %></strong></p>
+	<h4>Zoom:</h4>
+	<p><input type="button" id="magnify-enabler" name="magnify-enabler" value="Enable Magnifier"/></p>
 	
-	<h4>Thumbnails:</h4>
 	<div id="thumbnails">
 		<% 1.upto(@book.total_pages) do |page_num| %>
 			<%= link_to image_tag(thumbnail_url(@book, page_num), :height => 105, :class => (page_num == @page.to_i) ? "current" : ""), "/simpleviewer/#{@book.id}/#{page_num}" %>
@@ -50,44 +44,50 @@
 <% end %>
 
 <script type="text/javascript">
-	var TotalPages = <%= @book.total_pages.to_i %>;
-	var CurrentPage = <%= @page.to_i %>;
-	var PageHeight = $("#book-page-block")[0].clientHeight;
+	var total_pages  = <%= @book.total_pages.to_i %>;
+	var current_page = <%= @page.to_i %>;
+	var magnify_src  = "<%= "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png" %>";
 	
 	$(document).ready(function () {
-		/*$("#left-arrow, #right-arrow")
-			.css("height", PageHeight / 2 + 50)
-			.css("padding-top", PageHeight / 2 - 50)
-			.css("cursor", "pointer");
+		// scroll down the "#thumbnails" div to show current page in the middle
+		var scroll_height = $("#thumbnails")[0].scrollHeight;
+		$("#thumbnails")[0].scrollTop = scroll_height / total_pages * current_page - $("#thumbnails")[0].clientHeight / 2;
+		
+		$("#magnify-enabler").click(function () {
+			MojoMagnify.makeMagnifiable(
+				document.getElementById("book-page"),
+				magnify_src
+			);
+		});
 		
 		$("#left-arrow").mouseover(function () {
-			if (CurrentPage > 1) {
-				$(this).stop().animate({ 'opacity' : '1' });
+			if (current_page > 1) {
+				$(this).stop().animate({ 'opacity' : '1' }).css('cursor', 'pointer');
 			}
 		});
 		
 		$("#right-arrow").mouseover(function () {
-			if (CurrentPage < TotalPages) {
-				$(this).stop().animate({ 'opacity' : '1' });
+			if (current_page < total_pages) {
+				$(this).stop().animate({ 'opacity' : '1' }).css('cursor', 'pointer');
 			}
 		});
 		
 		$("#left-arrow, #right-arrow").mouseout(function () {
-			$(this).stop().animate({ 'opacity' : '0' });
+			$(this).stop().animate({ 'opacity' : '0' }).css('cursor', 'normal');
 		});
 		
 		$("#left-arrow").click(function () {
-			var prev_page_number = CurrentPage - 1;
+			var prev_page_number = current_page - 1;
 			if (prev_page_number > 0) {
 				window.location.href = window.location.href.replace(/\d+$/, prev_page_number);
 			}
 		});
 		
 		$("#right-arrow").click(function () {
-			var next_page_number = CurrentPage + 1;
-			if (next_page_number <= TotalPages) {
+			var next_page_number = current_page + 1;
+			if (next_page_number <= total_pages) {
 				window.location.href = window.location.href.replace(/\d+$/, next_page_number);
 			}
-		});*/
+		});
 	});
 </script>

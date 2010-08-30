@@ -1,0 +1,41 @@
+
+div.mojomagnify_zoom {
+	position : absolute;
+	width : 480px;
+	height : 240px;
+	overflow : hidden;
+	cursor : crosshair;
+
+	-ms-box-sizing : border-box;
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+
+
+
+div.mojomagnify_border {
+	position : absolute;
+
+	border : 2px solid black;
+
+	width  : 480px;
+	height : 240px;
+
+	left : 0; top : 0;
+
+	-ms-box-sizing : border-box;
+	-moz-box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	box-sizing : border-box;
+}
+
+
+img.mojomagnify_img {
+	padding : 0px;
+	border : 0px;
+}
+
+div.mojomagnify_zoom a {
+	cursor : crosshair;
+}

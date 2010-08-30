@@ -6,8 +6,8 @@
 	<%= stylesheet_link_tag "blueprint/print", :media => "print" %>
 	<!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
 	<%= stylesheet_link_tag "blueprint/plugins/fancy-type/screen", :media => "screen, projection" %>
-  <%= stylesheet_link_tag "application","simple-viewer" %>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "jquery.rails.js" %>
+  <%= stylesheet_link_tag "application","simple-viewer", "mojomagnify" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "jquery.rails.js", "mojomagnify.js" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
