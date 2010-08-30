@@ -4,12 +4,14 @@ class UploadsController < ApplicationController
   before_filter :authenticate_user!
   
   # GET /uploads
+  # GET /uploads.js
   # GET /uploads.xml
   def index
     @uploads = current_user.uploads.descending(:created_at)
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js # index.js.erb
       format.xml  { render :xml => @uploads }
     end
   end
