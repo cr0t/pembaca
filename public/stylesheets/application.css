@@ -416,3 +416,8 @@ body > #wrapper {
   float: left;
   margin-right: 1em;
 }
+form input { margin: 8px 0; }
+form div label {
+  display: block;
+  font-weight: bold;
+}

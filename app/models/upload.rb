@@ -6,6 +6,7 @@ class Upload
   
   include UploadsHelper
   
+  field :name, :type => String, :default => nil
   field :public, :type => Boolean, :default => true
   field :total_pages, :type => Integer, :default => 0
   field :doc_data, :type => Array, :default => []

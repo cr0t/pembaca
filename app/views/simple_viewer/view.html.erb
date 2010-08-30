@@ -23,15 +23,15 @@
 <% end %>
 
 <div id="book-page-block">
-	<!--<div id="left-arrow"><div class="symbol">&larr;</div></div>
-	<div id="right-arrow"><div class="symbol">&rarr;</div></div>-->
+	<div id="left-arrow"><div class="symbol">&larr;</div></div>
+	<div id="right-arrow"><div class="symbol">&rarr;</div></div>
 	
 	<%= image_tag "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png", :width => "100%", :id => "book-page" %>
 </div>
 
 <% content_for :sidebar do %>
 	<h4>Book:</h4>
-	<p><strong><%= @book.file_filename[0..35] %>...</strong></p>
+	<p><strong><%= if @book.name.nil? then @book.file_filename[0..35] + "..."; else @book.name; end %></strong></p>
 	
 	<h4>Zoom:</h4>
 	<p><input type="button" id="magnify-enabler" name="magnify-enabler" value="Enable Magnifier"/></p>
@@ -54,6 +54,12 @@
 		$("#thumbnails")[0].scrollTop = scroll_height / total_pages * current_page - $("#thumbnails")[0].clientHeight / 2;
 		
 		$("#magnify-enabler").click(function () {
+			$(this)
+				.attr("disabled", true)
+				.attr("value", "Magnify enabled");
+			
+			$("#left-arrow, #right-arrow").remove();
+			
 			MojoMagnify.makeMagnifiable(
 				document.getElementById("book-page"),
 				magnify_src
