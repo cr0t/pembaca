@@ -21,6 +21,8 @@ class StickersController < ApplicationController
     @sticker = Sticker.find(params[:id])
   end
   
+  # PUT /stickers/1
+  # PUT /stickers/1.xml
   def update
     @sticker = Sticker.find(params[:id])
     
@@ -34,6 +36,19 @@ class StickersController < ApplicationController
         format.json { render :json => @sticker.errors.to_json }
         format.xml  { render :xml => @sticker.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+  
+  # DELETE /stickers/1
+  # DELETE /stickers/1.xml
+  def destroy
+    @sticker = Sticker.find(params[:id])
+    @sticker.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(uploads_url) }
+      format.json { render :json => { :result => "success" }.to_json }
+      format.xml  { head :ok }
     end
   end
 end
