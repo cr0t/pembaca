@@ -1,4 +1,43 @@
-class StickersController < ApplicationController  
+class StickersController < ApplicationController
+  before_filter :authenticate_user!
+  
+  # GET /stickers
+  # GET /stickers.js
+  # GET /stickers.xml
+  def index
+    @stickers = Sticker.all.descending(:created_at)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js # index.js.erb
+      format.xml  { render :xml => @uploads }
+    end
+  end
+  
+  # GET /stickers/1
+  # GET /stickers/1.xml
+  def show
+    @sticker = Sticker.find(params[:id])
+  end
+  
+  # GET /stickers/new
+  # GET /stickers/new.xml
+  def new
+    @sticker = Sticker.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @sticker }
+    end
+  end
+  
+  # GET /stickers/1/edit
+  def edit
+    @sticker = Sticker.find(params[:id])
+  end
+  
+  # POST /stickers
+  # POST /stickers.xml
   def create
     @sticker = Sticker.new(params[:sticker])
     @sticker.upload = Upload.find(params[:book_id])
@@ -15,10 +54,6 @@ class StickersController < ApplicationController
         format.xml  { render :xml => @sticker.errors, :status => :unprocessable_entity }
       end
     end
-  end
-  
-  def show
-    @sticker = Sticker.find(params[:id])
   end
   
   # PUT /stickers/1

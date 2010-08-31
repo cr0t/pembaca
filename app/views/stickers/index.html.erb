@@ -1,0 +1,24 @@
+<h3 class="alt">Stickers list</h3>
+
+<table>
+	<thead>
+		<tr>
+			<th>Book name</th>
+			<th>Page number</th>
+			<th>Text</th>
+			<th>Public?</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @stickers.each do |sticker| %>
+			<tr>
+				<td><%= sticker.upload.name %></td>
+				<td><%= sticker.page_number %></td>
+				<td><%= sticker.text %></td>
+				<td><%= sticker.public %></td>
+				<td><%= link_to "Show", :controller => "simple_viewer", :action => "view", :id => sticker.upload.id, :page => sticker.page_number %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
