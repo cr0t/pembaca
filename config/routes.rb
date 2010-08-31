@@ -5,6 +5,8 @@ Pembaca::Application.routes.draw do
   match "/uploaded/*path" => "gridfs#serve"
   match "/uploads/reconvert/:id" => "uploads#reconvert"
   resources :uploads
+  
+  resources :stickers
 
   devise_for :users
 

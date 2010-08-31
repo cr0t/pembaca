@@ -6,19 +6,20 @@ class Upload
   
   include UploadsHelper
   
-  field :name, :type => String, :default => nil
-  field :public, :type => Boolean, :default => true
-  field :total_pages, :type => Integer, :default => 0
-  field :doc_data, :type => Array, :default => []
-  field :converted, :type => Boolean, :default => false
-  field :failed, :type => Boolean, :default => false
+  field :name,              :type => String,  :default => nil
+  field :public,            :type => Boolean, :default => true
+  field :total_pages,       :type => Integer, :default => 0
+  field :doc_data,          :type => Array,   :default => []
+  field :converted,         :type => Boolean, :default => false
+  field :failed,            :type => Boolean, :default => false
   field :already_converted, :type => Integer, :default => 0
-  field :static_host, :type => String, :default => nil
-  field :convert_errors, :type => Array, :default => []
+  field :static_host,       :type => String,  :default => nil
+  field :convert_errors,    :type => Array,   :default => []
   
   validates_presence_of :user_id
   
   referenced_in :user
+  references_many :stickers, :dependent => :delete
   
   mount_uploader :file, PdfUploader
   

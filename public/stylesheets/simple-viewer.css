@@ -85,3 +85,7 @@
   height: 150px;
   width: 150px;
 }
+.sticker textarea {
+  height: 65%;
+  width: 92%;
+}

@@ -58,9 +58,11 @@
 
 <script type="text/javascript">
 /*<![CDATA[*/
+	var book_id      = "<%= @book._id %>";
 	var total_pages  = <%= @book.total_pages.to_i %>;
 	var current_page = <%= @page.to_i %>;
 	var magnify_src  = "<%= "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png" %>";
+	var stickers     = <%=raw @book.stickers.where(:page_number => @page.to_i).to_json %>;
 	
 	$(document).ready(function () {
 		// scroll down the "#thumbnails" div to show current page in the middle
@@ -80,6 +82,7 @@
 			);
 		});
 		
+		PSticker.initialize();
 		prepare_stickers();
 		
 		prepare_arrows();
@@ -90,25 +93,7 @@
 	 */
 	function prepare_stickers() {
 		$("#add-sticker").click(function () {
-			var sticker_text = prompt("Please, input sticker text below");
-			var sticker = $("<div class=\"sticker\">" + sticker_text + "</div>");
-			$("#book-page-block").append(sticker);
-			
-			sticker.draggable({
-				stop : function(event, ui) {
-					console.log(ui);
-				}
-			});
-			
-			sticker.dblclick(function () {
-				var text = $(this).text();
-				$(this).html('');
-				$("<textarea style=\"height:100px;width:138px;\">" + text + "</textarea><input type=\"button\" value=\"Update\" onclick=\"alert('Update clicked!')\"/>").appendTo($(this));
-			});
-		});
-		
-		$(".sticker").live("click", function() {
-			
+			var sticker = PSticker.make_new(book_id, current_page);
 		});
 	}
 	
