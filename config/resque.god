@@ -1,6 +1,7 @@
 rails_env   = ENV['RAILS_ENV']  || "production"
 rails_root  = ENV['RAILS_ROOT'] || "/var/www/com.summercode.pembaca/current"
 num_workers = rails_env == 'production' ? 3 : 2
+rake_path   = "/opt/ruby-enterprise-1.8.7-2010.02/bin/rake"
 
 num_workers.times do |num|
   God.watch do |w|
@@ -8,7 +9,7 @@ num_workers.times do |num|
     w.group    = 'resque'
     w.interval = 30.seconds
     w.env      = { "QUEUE"=>"clear,convert", "RAILS_ENV"=>rails_env }
-    w.start    = "/opt/ruby-enterprise-1.8.7-2010.02/bin/rake -f #{rails_root}/Rakefile environment resque:work"
+    w.start    = "#{rake_path} -f #{rails_root}/Rakefile environment resque:work"
 
     w.uid = 'www-data'
     w.gid = 'www-data'
