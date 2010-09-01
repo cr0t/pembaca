@@ -5,3 +5,11 @@ development:
       username:  "cr0t"
       password:  "fuck0ff"
       directory: "/var/www/nginx-default/"
+      
+production:
+  servers:
+    - protocol:  "ssh"
+      hostname:  "pembaca-static.summercode.com"
+      username:  "pembaca"
+      password:  "s7KTQzEF9IDQ7Wfx"
+      directory: "/var/www/nginx-default/"
