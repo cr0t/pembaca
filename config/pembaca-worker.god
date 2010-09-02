@@ -3,7 +3,7 @@ rails_root  = ENV['RAILS_ROOT'] || "/var/www/com.summercode.pembaca/current"
 rake_cmd    = "/opt/ruby-enterprise-1.8.7-2010.02/bin/rake"
 home_env    = "/home/cr0t"
 queues_env  = "convert,clean"
-num_workers = rails_env == 'production' ? 3 : 2
+num_workers = rails_env == 'production' ? 2 : 2
 
 num_workers.times do |num|
   God.watch do |w|
@@ -18,7 +18,7 @@ num_workers.times do |num|
     # retart if memory gets too high
     w.transition(:up, :restart) do |on|
       on.condition(:memory_usage) do |c|
-        c.above = 100.megabytes
+        c.above = 150.megabytes
         c.times = 2
       end
     end
