@@ -11,6 +11,8 @@ set :use_sudo, false
 
 set :deploy_to, "/var/www/#{application}"
 
+set :keep_releases, 3
+
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
