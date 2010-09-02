@@ -1,20 +1,27 @@
 rails_env  = ENV['RAILS_ENV']  || "production"
 rails_root = ENV['RAILS_ROOT'] || "/var/www/com.summercode.pembaca/current/"
 queues     = "convert,clean"
-home_path  = ENV['HOME'] || "/home/cr0t"
+home_path  = "/home/cr0t"
 rake_path  = "/opt/ruby-enterprise-1.8.7-2010.02/bin/rake"
 #num_workers = rails_env == 'production' ? 3 : 2
 
-Bluepill.application("resque", :foreground => true) do |app|
-  app.process("process_name") do |process|
+Bluepill.application("resque") do |app|
+  app.process("worker") do |process|
     process.start_command = "/usr/bin/env HOME=#{home_path} RAILS_ENV=#{rails_env} QUEUE=#{queues} #{rake_path} -f #{rails_root}/Rakefile environment resque:work"
     #process.start_command = "env HOME=/home/cr0t bundle install"
+    
     process.start_grace_time = 10.seconds
-    #process.pid_file = "/var/bluepill/resque.pid"
+    process.stop_grace_time = 10.seconds
+    process.restart_grace_time = 20.seconds
+    
     process.uid = "cr0t"
     process.gid = "cr0t"
+    
     process.working_dir = "#{rails_root}"
+    
+    process.stdout = process.stderr = "/tmp/resque-workers.log"
 
     process.checks :mem_usage, :every => 10.seconds, :below => 50.megabytes, :times => [3,5]
+    process.checks :flapping, :times => 2, :within => 30.seconds, :retry_in => 7.seconds
   end
 end
