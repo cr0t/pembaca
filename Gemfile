@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.0'
 
-gem "mongoid", "2.0.0.beta.16"
+gem "mongoid", "2.0.0.beta.17"
 gem "bson_ext", "1.0.4"
 
 gem "devise", :git => "http://github.com/plataformatec/devise.git"
