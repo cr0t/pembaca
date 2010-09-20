@@ -10,9 +10,13 @@ class SimpleViewerController < ApplicationController
   end
   
   def view_last_book
-    @book = Upload.first(:conditions => {:_id=>BSON::ObjectID(cookies[:last_book_id])})
-    @page = cookies[:last_page_num].rjust(6, "0")
-    
-    render :view
+    if cookies[:last_book_id].nil?
+      redirect_to root_path, :notice => "You haven't read any book before"
+    else
+      @book = Upload.first(:conditions => {:_id=>BSON::ObjectID(cookies[:last_book_id])})
+      @page = cookies[:last_page_num].rjust(6, "0")
+
+      render :view
+    end
   end
 end

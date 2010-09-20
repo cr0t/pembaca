@@ -1,5 +1,5 @@
 defaults: &defaults
-  host: 192.168.1.35
+  host: 192.168.1.37
   # slaves:
   #   - host: slave1.local
   #     port: 27018
@@ -8,7 +8,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: liberty_development
+  database: pembaca_development
 
 test:
   <<: *defaults
