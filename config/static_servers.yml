@@ -1,7 +1,7 @@
 development:
   servers:
     - protocol:  "ssh"
-      hostname:  "192.168.1.37"
+      hostname:  "192.168.1.70"
       username:  "cr0t"
       password:  "fuck0ff"
       directory: "/var/www/nginx-default/"
