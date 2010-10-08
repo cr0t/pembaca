@@ -16,7 +16,7 @@
 #books a:hover img { opacity: 0.8; }
 #page { padding-bottom: 5px; }
 #page img {
-  width: 760px;
+  width: 756px;
   -webkit-box-shadow: 1px 0 3px #aaaaaa;
 }
 #page .page-error {
@@ -28,7 +28,7 @@
 #controls-container {
   position: absolute;
   top: 0;
-  width: 760px;
+  width: 758px;
   height: 0;
   background: rgba(128, 128, 128, 0.2);
   border: 1px solid #bbbbbb;

@@ -17,6 +17,10 @@ var FBViewer = {
 		
 		FBViewer.controls_init();
 		
+		if (typeof($.address.parameter("page")) == "undefined") {
+			$.address.parameter("page", 1);
+		}
+		
 		$.address.change(function(event) {
 			FBViewer.check_page($.address.parameter("page")) && FBViewer.show_page();
 		});
@@ -43,10 +47,14 @@ var FBViewer = {
 		});
 		
 		$("#prev-page-button").click(function () {
-			$.address.parameter("page", FBViewer.current_page - 1);
+			if ((FBViewer.current_page - 1) >= 1) {
+				$.address.parameter("page", FBViewer.current_page - 1);
+			}
 		});
 		$("#next-page-button").click(function () {
-			$.address.parameter("page", FBViewer.current_page + 1);
+			if ((FBViewer.current_page + 1) <= FBViewer.book.total_pages) {
+				$.address.parameter("page", FBViewer.current_page + 1);
+			}
 		});
 	},
 	
