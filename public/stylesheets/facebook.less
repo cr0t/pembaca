@@ -1,0 +1,82 @@
+#wrapper {
+	width    : 760px;
+	margin   : 0 auto;
+	position : relative;
+}
+
+#books {
+	height : 266 * 2 - 24px;
+	
+	.book-thumb {
+		float         : left;
+		margin-right  : 5px;
+		margin-bottom : 22px;
+	}
+	
+	a {
+		img {
+			border             : 1px solid #aaa;
+			-webkit-box-shadow : 0 0 4px #555;
+		}
+	}
+	
+	a:hover {
+		img {
+			opacity : .8;
+		}
+	}
+}
+
+/**
+ * Viewer styles
+ */
+#page {
+	padding-bottom : 5px;
+	
+	img {
+		width              : 760px;
+		-webkit-box-shadow : 1px 0 3px #aaa;
+	}
+	
+	.page-error {
+		padding-top : 200px;
+		text-align  : center;
+		font-size   : 2em;
+		color       : #eee;
+	}
+}
+
+#controls-container {
+	position       : absolute;
+	top            : 0;
+	width          : 760px;
+	height         : 0;
+	background     : rgba(128, 128, 128, 0.2);
+	border         : 1px solid #bbb;
+	border-top     : none;
+	overflow       : hidden;
+	padding-bottom : 20px;
+	border-bottom-right-radius : 10px;
+	border-bottom-left-radius  : 10px;
+	
+	#controls {
+		display     : none;
+		padding-top : 30px;
+		font-size   : 2em;
+		
+		div {
+			float        : left;
+			padding      : 10px;
+			margin-right : 10px;
+		}
+		
+		.button {
+			cursor        : pointer;
+			border-radius : 5px;
+			background    : rgba(255, 255, 255, 0.2);
+		}
+		.button:hover {
+			background : rgba(255, 255, 255, 0.8);
+		}
+	}
+}

@@ -1,0 +1,30 @@
+<script>
+$(document).ready(function () {
+	FBViewer.init(<%= raw @book.to_json %>);
+});
+</script>
+
+<div id="controls-container">
+	<div id="controls">
+		<div id="home-link">
+			<%= link_to "My bookshelf", canvas_path %>
+		</div>
+		
+		<div id="pin-toggler" class="button">
+			Pin
+		</div>
+		
+		<div id="prev-page-button" class="button">
+			&larr; Prev
+		</div>
+		
+		<div id="next-page-button" class="button">
+			Next &rarr;
+		</div>
+		
+		<br clear="all"/>
+	</div>
+</div>
+
+<div id="page">
+</div>

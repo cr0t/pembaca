@@ -1,0 +1,56 @@
+#wrapper {
+  width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+#books { height: 508px; }
+#books .book-thumb {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 22px;
+}
+#books a img {
+  border: 1px solid #aaaaaa;
+  -webkit-box-shadow: 0 0 4px #555555;
+}
+#books a:hover img { opacity: 0.8; }
+#page { padding-bottom: 5px; }
+#page img {
+  width: 760px;
+  -webkit-box-shadow: 1px 0 3px #aaaaaa;
+}
+#page .page-error {
+  padding-top: 200px;
+  text-align: center;
+  font-size: 2em;
+  color: #eeeeee;
+}
+#controls-container {
+  position: absolute;
+  top: 0;
+  width: 760px;
+  height: 0;
+  background: rgba(128, 128, 128, 0.2);
+  border: 1px solid #bbbbbb;
+  border-top: none;
+  overflow: hidden;
+  padding-bottom: 20px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+#controls-container #controls {
+  display: none;
+  padding-top: 30px;
+  font-size: 2em;
+}
+#controls-container #controls div {
+  float: left;
+  padding: 10px;
+  margin-right: 10px;
+}
+#controls-container #controls .button {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+}
+#controls-container #controls .button:hover { background: rgba(255, 255, 255, 0.8); }
