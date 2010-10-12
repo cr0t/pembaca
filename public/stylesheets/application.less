@@ -35,12 +35,9 @@
 }
 
 .bookshelf {
-	background : url(/images/bookshelf-background.jpg) repeat-y;
-	padding    : 12px;
-}
-
-#public-books {
-	height     : 266 * 3 - 24px;
+	background    : url(/images/bookshelf-background.jpg) repeat-y;
+	padding       : 12px;
+	margin-bottom : 1em;
 	
 	.book-thumb {
 		float         : left;
@@ -60,6 +57,10 @@
 			opacity : .8;
 		}
 	}
+}
+
+#own-books, #public-books {
+	height  : 266 - 24px;
 }
 
 #footer {
