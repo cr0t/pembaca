@@ -411,7 +411,7 @@ body > #wrapper {
   -webkit-box-shadow: 0 0 4px #555555;
 }
 .bookshelf a:hover img { opacity: 0.8; }
-#own-books, #public-books { height: 242px; }
+#own-books, #public-books { min-height: 242px; }
 #footer ul li {
   list-style: none;
   float: left;
