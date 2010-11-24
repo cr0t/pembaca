@@ -1,7 +1,7 @@
 <% @uploads.each do |upload| %>
 <tr<%= if upload.convert_errors && !upload.convert_errors.empty? then " class=convert-errors"; end %>>
 <td><%= if !upload.name.nil? then upload.name; else upload.file_filename[0..20]; end; %></td>
-<td><%= upload.content_type.gsub(/application\//, "") %></td>
+<td><%= upload.content_type.gsub(/application\//, "") rescue nil %></td>
 <td><%= if upload.public then "Yes"; else "No"; end %></td>
 <td><%= converted_percent(upload) %>%</td>
 <td><%= upload.total_pages %></td>

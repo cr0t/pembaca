@@ -46,4 +46,7 @@ Pembaca::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Devise need it
+  config.action_mailer.default_url_options = { :host => 'pembaca.summercode.com' }
 end
