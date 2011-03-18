@@ -4,12 +4,6 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "noreply@pembaca.summercode.com"
-  
-  config.oauth :facebook, '110135259043277', 'd8af47c38dd99cef944e414d5b4011ef',
-  :site              => 'https://graph.facebook.com/',
-  :authorize_path    => '/oauth/authorize',
-  :access_token_path => '/oauth/access_token',
-  :scope             => %w(email)
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -49,7 +43,7 @@ Devise.setup do |config|
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
   # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
-  config.encryptor = :bcrypt
+  #config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
   config.pepper = "9651850f862a94bb583f89bd0ce22cce10a27e3d414bec9d04bbe8a225166391671dbbe43e4ae2c1b6ef02c32375ee39f49224fd4e830456523d311750f4d3d6"
