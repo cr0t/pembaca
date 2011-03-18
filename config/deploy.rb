@@ -16,8 +16,8 @@ set :keep_releases, 3
 namespace :deploy do
   task :start do ; end
   task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  task :restart do
+    run "/etc/unicorns/pembaca restart"
   end
   
   after "deploy:update" do
