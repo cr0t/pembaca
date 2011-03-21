@@ -2,7 +2,7 @@ set :application, "com.summercode.pembaca"
 
 set :scm, :git
 set :branch, "master"
-set :repository,  "gitosis@git.summercode.com:liberty.git"
+set :repository,  "gitosis@git.summercode.com:pembaca.git"
 
 role :app, "pembaca.summercode.com"
 
