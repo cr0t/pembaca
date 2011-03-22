@@ -78,7 +78,7 @@ class ConvertJob
   	
   	# creates new temporary working directory and chdir to it
   	def setup_environment
-  		`mkdir /tmp/#{@upload_id}`
+  		`rm -rf /tmp/#{@upload_id} && mkdir /tmp/#{@upload_id}`
   		Dir.chdir("/tmp/" + @upload_id)
   	end
   	
