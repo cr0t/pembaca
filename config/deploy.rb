@@ -18,6 +18,7 @@ namespace :deploy do
   task :stop do ; end
   task :restart do
     run "/etc/unicorns/pembaca restart"
+    run "/etc/unicorns/pembaca_worker restart"
   end
   
   after "deploy:update" do
