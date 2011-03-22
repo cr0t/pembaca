@@ -33,7 +33,7 @@ class ConvertJob
       	  @convert_errors.push("Can't get total pages number")
     	  end
       	
-      	@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
+      	@db.collection('uploads').update({ "_id" => BSON::ObjectId(@upload_id) }, {
     			"$set" => { "total_pages" => total_pages_to_convert }
     		})
 
@@ -46,7 +46,7 @@ class ConvertJob
         		
         		converted_count += 1
         		
-        		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
+        		@db.collection('uploads').update({ "_id" => BSON::ObjectId(@upload_id) }, {
         		  "$set" => { "already_converted" => converted_count }
         		})
         		
@@ -165,7 +165,7 @@ class ConvertJob
   	    failed    = true
 	    end
   		
-  		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
+  		@db.collection('uploads').update({ "_id" => BSON::ObjectId(@upload_id) }, {
   			"$set" => {
   				"converted"   => converted,
   				"failed"      => failed,
@@ -204,7 +204,7 @@ class ConvertJob
     
     # sets the convert errors field if any was during converting
   	def set_convert_errors
-  		@db.collection('uploads').update({ "_id" => BSON::ObjectID(@upload_id) }, {
+  		@db.collection('uploads').update({ "_id" => BSON::ObjectId(@upload_id) }, {
   			"$set" => {
   				"convert_errors" => @convert_errors
   			}
