@@ -62,7 +62,7 @@
 	var total_pages  = <%= @book.total_pages.to_i %>;
 	var current_page = <%= @page.to_i %>;
 	var magnify_src  = "<%= "http://#{@book.static_host}/#{@book.id}/#{@book.id}-#{@page}.png" %>";
-	var stickers     = <%=raw @book.stickers.where(:page_number => @page.to_i).to_json %>;
+	var stickers     = <%=raw @book.stickers.where(:page_number => @page.to_i).entries.to_json %>;
 	
 	$(document).ready(function () {
 		// scroll down the "#thumbnails" div to show current page in the middle
