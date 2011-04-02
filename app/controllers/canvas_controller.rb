@@ -6,7 +6,7 @@ class CanvasController < ApplicationController
   end
   
   def viewer
-    @book = Upload.first(:conditions => { :_id => BSON::ObjectID(params[:id]) })
+    @book = Upload.first(:conditions => { :_id => BSON::ObjectId(params[:id]) })
   end
 
 end

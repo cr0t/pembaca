@@ -1,5 +1,5 @@
 Pembaca::Application.routes.draw do
-  get "canvas" => "canvas#index", :as => :canvas
+  match "canvas" => "canvas#index", :as => :canvas
   match "canvas/viewer/:id" => "canvas#viewer", :as => :canvas_viewer
 
   match 'simpleviewer/:id/:page' => 'simple_viewer#view'
