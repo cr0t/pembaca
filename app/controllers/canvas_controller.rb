@@ -3,7 +3,7 @@ class CanvasController < ApplicationController
   
   def index
     unless params[:fb_sig_user].nil?
-      @user = User.first(:where => "facebook_id == ?", params[:fb_sig_user])
+      @user = User.first(:conditions => { :facebook_id => params[:fb_sig_user] })
       if @user.persisted?
         sign_in @user
       end
