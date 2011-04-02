@@ -1,11 +1,27 @@
+<% if user_signed_in? && @own_books.size > 0 %>
 <h3 class="alt">Your bookshelf</h3>
 
 <div class="bookshelf">
-	<div id="books">
-		<% @uploads.each do |upload| %>
+	<div id="own-books">
+		<% @own_books.each do |book| %>
 			<div class="book-thumb">
-				<%= link_to image_tag(thumbnail_url(upload), :height => 105), canvas_viewer_path(upload.id) %>
+				<%= link_to image_tag(thumbnail_url(book), :height => 105), "/simpleviewer/#{book.id}/1" %>
 			</div>
 		<% end %>
+		<br clear="all"/>
+	</div>
+</div>
+<% end %>
+
+<h3 class="alt">Public bookshelf</h3>
+
+<div class="bookshelf">
+	<div id="public-books">
+		<% @public_books.each do |book| %>
+			<div class="book-thumb">
+				<%= link_to image_tag(thumbnail_url(book), :height => 105), "/simpleviewer/#{book.id}/1" %>
+			</div>
+		<% end %>
+		<br clear="all"/>
 	</div>
 </div>
