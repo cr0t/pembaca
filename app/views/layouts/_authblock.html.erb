@@ -4,5 +4,5 @@
 <% else %>
 	<%= link_to "Sign up", new_user_registration_path %> or
 	<%= link_to "log in", new_user_session_path %><br/>
-	<%#= link_to image_tag("http://developers.facebook.com/images/devsite/login-button.png"), user_oauth_authorize_url(:facebook) %>
+	<%= link_to image_tag("http://developers.facebook.com/images/devsite/login-button.png"), user_omniauth_authorize_path(:facebook) %>
 <% end %>

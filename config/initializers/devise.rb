@@ -4,6 +4,9 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "noreply@pembaca.summercode.com"
+  
+  # ==> OmniAuth Configuration
+  config.omniauth :facebook, "110135259043277", "d8af47c38dd99cef944e414d5b4011ef"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
