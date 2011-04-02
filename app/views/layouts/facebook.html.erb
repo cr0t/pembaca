@@ -27,9 +27,6 @@
 </head>
 <body>
 	<div id="wrapper">
-		<% unless user_signed_in? %>
-			<%= link_to image_tag("http://developers.facebook.com/images/devsite/login-button.png"), user_omniauth_authorize_path(:facebook) %>
-		<% end %>
 		<%= yield %>
 	</div>
 </body>
