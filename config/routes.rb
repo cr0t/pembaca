@@ -11,7 +11,7 @@ Pembaca::Application.routes.draw do
   
   resources :stickers
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   match "/terms" => "welcome#terms"
   match "/privacy" => "welcome#privacy"
