@@ -5,7 +5,7 @@
 	<div id="own-books">
 		<% @own_books.each do |book| %>
 			<div class="book-thumb">
-				<%= link_to image_tag(thumbnail_url(book), :height => 105), canvas_viewer_path(upload.id) %>
+				<%= link_to image_tag(thumbnail_url(book), :height => 105), canvas_viewer_path(book.id) %>
 			</div>
 		<% end %>
 		<br clear="all"/>
@@ -19,7 +19,7 @@
 	<div id="public-books">
 		<% @public_books.each do |book| %>
 			<div class="book-thumb">
-				<%= link_to image_tag(thumbnail_url(book), :height => 105), canvas_viewer_path(upload.id) %>
+				<%= link_to image_tag(thumbnail_url(book), :height => 105), canvas_viewer_path(book.id) %>
 			</div>
 		<% end %>
 		<br clear="all"/>
