@@ -1,3 +1,7 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require "rvm/capistrano"
+set :rvm_ruby_string, "ree@global"
+
 require "bundler/capistrano"
 
 set :application, "com.summercode.pembaca"
