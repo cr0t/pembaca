@@ -1,4 +1,4 @@
-require 'carrierwave/orm/mongoid'
+require "carrierwave/mongoid"
 
 class Upload
   include Mongoid::Document
@@ -21,7 +21,7 @@ class Upload
   referenced_in :user
   references_many :stickers, :dependent => :delete
   
-  mount_uploader :file, PdfUploader
+  mount_uploader :file, PdfUploader, :mount_on => :file_filename
   
   def content_type
     mongo_filename = _id.to_s + "/" + file_filename
