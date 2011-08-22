@@ -45,6 +45,7 @@ class Upload
   
   protected
   def start_convert
+    sleep 3 # bad but for the temp solution is enough
     enqueue_convert_job(_id.to_s, file_filename)
   end
   
