@@ -6,7 +6,7 @@ gem "mongoid", "~> 2.1"
 gem "bson_ext", "~> 1.3"
 
 gem "devise"
-gem "oa-oauth", :require => "omniauth/oauth"
+gem "omniauth-facebook"
 
 gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
 
