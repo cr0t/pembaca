@@ -6,6 +6,7 @@ Devise.setup do |config|
   config.mailer_sender = "noreply@pembaca.summercode.com"
   
   # ==> OmniAuth Configuration
+  require 'omniauth-facebook'
   config.omniauth :facebook, "110135259043277", "d8af47c38dd99cef944e414d5b4011ef", { :scope => 'publish_stream,email', :client_options => { :ssl => { :ca_path => "/etc/ssl/certs" } } }
 
   # Configure the class responsible to send e-mails.
