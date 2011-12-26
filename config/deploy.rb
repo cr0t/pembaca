@@ -1,6 +1,6 @@
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
-set :rvm_ruby_string, "ree@global"
+set :rvm_ruby_string, "ree@pembaca"
 
 require "bundler/capistrano"
 
