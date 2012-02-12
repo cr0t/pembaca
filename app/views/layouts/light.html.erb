@@ -2,51 +2,51 @@
 <html>
 <head>
   <title>Pembaca &mdash; Simple Viewer</title>
-	<%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
-	<%= stylesheet_link_tag "blueprint/print", :media => "print" %>
-	<!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
-	<%= stylesheet_link_tag "blueprint/plugins/fancy-type/screen", :media => "screen, projection" %>
-  	<%= stylesheet_link_tag "application","simple-viewer", "mojomagnify" %>
-  	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js", "jquery.rails.js", "psticker.js", "mojomagnify.js" %>
-  	<%= csrf_meta_tag %>
-  	
-  	<%= raw(hoptoad_javascript_notifier) %>
+  <%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
+  <%= stylesheet_link_tag "blueprint/print", :media => "print" %>
+  <!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
+  <%= stylesheet_link_tag "blueprint/plugins/fancy-type/screen", :media => "screen, projection" %>
+  <%= stylesheet_link_tag "application","simple-viewer", "mojomagnify" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js", "jquery.rails.js", "psticker.js", "mojomagnify.js" %>
+  <%= csrf_meta_tag %>
 
-	<script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-2463736-25']);
-	  _gaq.push(['_trackPageview']);
+  <script type="text/javascript">
+  /*<![CDATA[*/
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2463736-25']);
+  _gaq.push(['_trackPageview']);
 
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	</script>
-</head>
-<body>
-	<div id="wrapper" class="container">
-		<div class="span-4">
-			<strong><%= link_to "Pembaca", "/", :class => "alt" %></strong>
-		</div>
-		
-		<div class="span-10">
-			<%= yield :page_controls %>
-		</div>
-		
-		<div id="auth-block" class="span-10 last">
-			<%= render 'layouts/authblock' %>
-		</div>
-		
-		<div class="container">
-			<div class="span-18" id="central-content">
-				<%= yield %>
-			</div>
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  /*]]>*/
+  </script>
+  </head>
+  <body>
+    <div id="wrapper" class="container">
+      <div class="span-4">
+        <strong><%= link_to "Pembaca", "/", :class => "alt" %></strong>
+      </div>
 
-			<div class="span-6 last">
-				<%= yield :sidebar %>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+      <div class="span-10">
+        <%= yield :page_controls %>
+      </div>
+
+      <div id="auth-block" class="span-10 last">
+        <%= render 'layouts/authblock' %>
+      </div>
+
+      <div class="container">
+        <div class="span-18" id="central-content">
+          <%= yield %>
+        </div>
+
+        <div class="span-6 last">
+          <%= yield :sidebar %>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
