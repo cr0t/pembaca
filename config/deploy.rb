@@ -1,6 +1,6 @@
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
-set :rvm_ruby_string, "ree@pembaca"
+set :rvm_ruby_string, "ree-1.8.7-2011.03@pembaca"
 
 require "bundler/capistrano"
 
@@ -24,17 +24,17 @@ namespace :deploy do
     run "/etc/unicorns/pembaca start"
     run "/etc/unicorns/pembaca_worker start"
   end
-  
+
   task :stop do
     run "/etc/unicorns/pembaca stop"
     run "/etc/unicorns/pembaca_worker stop"
   end
-  
+
   task :restart do
     run "/etc/unicorns/pembaca restart"
     run "/etc/unicorns/pembaca_worker restart"
   end
-  
+
   after "deploy:update" do
     deploy::cleanup
   end
