@@ -2,96 +2,93 @@
 <html>
 <head>
   <title>Pembaca</title>
-	<%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
-	<%= stylesheet_link_tag "blueprint/print", :media => "print" %>
-	<!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
-	<%= stylesheet_link_tag "blueprint/plugins/fancy-type/screen", :media => "screen, projection" %>
-  	<%= stylesheet_link_tag "application" %>
-  	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "application.js", "jquery.rails.js" %>
-  	<%= csrf_meta_tag %>
-  	
-  	<%= raw(hoptoad_javascript_notifier) %>
+  <%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
+  <%= stylesheet_link_tag "blueprint/print", :media => "print" %>
+  <!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
+  <%= stylesheet_link_tag "blueprint/plugins/fancy-type/screen", :media => "screen, projection" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "application.js", "jquery.rails.js" %>
+  <%= csrf_meta_tag %>
 
-	<script type="text/javascript">
-	/*<![CDATA[*/
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-2463736-31']);
-		_gaq.push(['_trackPageview']);
-		
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	/*]]>*/
-	</script>
-</head>
-<body>
-	
-	<div id="wrapper">
-		<div id="top-container" class="container">
-			<div class="span-16">
-				<div id="logo"><%= link_to "Pembaca", "/", :class => :alt %><span class="alt"> &mdash; Your cloudy librarian</span></div>
-			</div>
-			
-			<div id="auth-block" class="span-8 last">
-				<%= render 'layouts/authblock' %>
-			</div>
+  <script type="text/javascript">
+  /*<![CDATA[*/
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2463736-31']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  /*]]>*/
+  </script>
+  </head>
+  <body>
 
-			<div class="span24 last">
-				<div class="span-12">
-					<h3 class="alt"><%= link_to "My workroom", uploads_path %></h3>
-				</div>
-				
-				<div class="span-4">
-					<h3 class="alt"><%= link_to "Stickers list", stickers_path %></h3>
-				</div>
+    <div id="wrapper">
+      <div id="top-container" class="container">
+        <div class="span-16">
+          <div id="logo"><%= link_to "Pembaca", "/", :class => :alt %><span class="alt"> &mdash; Your cloudy librarian</span></div>
+        </div>
 
-				<div class="span-4">
-					<h3 class="alt"><strong><%= link_to "Read last", '/last' %></strong></h3>
-				</div>
+        <div id="auth-block" class="span-8 last">
+          <%= render 'layouts/authblock' %>
+        </div>
 
-				<div class="span-4 last">
-					<h3 class="alt"><%= link_to "Upload new book", new_upload_path %></h3>
-				</div>
-			</div>
+        <div class="span24 last">
+          <div class="span-12">
+            <h3 class="alt"><%= link_to "My workroom", uploads_path %></h3>
+          </div>
 
-			<% if !flash.empty? %>
-				<div class="span-24 last">
-					<% if !notice.nil? %>
-						<p class="notice"><%= notice %></p>
-					<% end %>
-					<% if !alert.nil? %>
-						<p class="notice alert"><%= alert %></p>
-					<% end %>
-				</div>
-			<% end %>
+          <div class="span-4">
+            <h3 class="alt"><%= link_to "Stickers list", stickers_path %></h3>
+          </div>
 
-			<div class="span-18 last" id="central-content">
-				<%= yield %>
-			</div>
+          <div class="span-4">
+            <h3 class="alt"><strong><%= link_to "Read last", '/last' %></strong></h3>
+          </div>
 
-			<div class="span-6 last">
-				<%= yield :sidebar %>
-			</div>
-		</div>
-	</div>
-	
-	<div id="footer" class="container">
-		<div class="prepend-1 span-13 colborder">
-			<h3><a class="alt" href="/">Pembaca <small>home</small></a></h3>
-		</div>
-		<div class="span-8 append-1 last">
-			<ul>
-				<li><%= link_to "Terms and Conditions", terms_path %></li>
-				<li><%= link_to "Privacy Policy", privacy_path %></li>
-				<li><%= link_to "About", about_path %></li>
-				<li><%= link_to "Help", help_path %></li>
-				<li><%= link_to "Team", team_path %></li>
-			</ul>
+          <div class="span-4 last">
+            <h3 class="alt"><%= link_to "Upload new book", new_upload_path %></h3>
+          </div>
+        </div>
+
+        <% if !flash.empty? %>
+        <div class="span-24 last">
+          <% if !notice.nil? %>
+          <p class="notice"><%= notice %></p>
+          <% end %>
+          <% if !alert.nil? %>
+          <p class="notice alert"><%= alert %></p>
+          <% end %>
+        </div>
+        <% end %>
+
+        <div class="span-18 last" id="central-content">
+          <%= yield %>
+        </div>
+
+        <div class="span-6 last">
+          <%= yield :sidebar %>
+        </div>
+      </div>
     </div>
-		
-	</div>
 
-</body>
-</html>
+    <div id="footer" class="container">
+      <div class="prepend-1 span-13 colborder">
+        <h3><a class="alt" href="/">Pembaca <small>home</small></a></h3>
+      </div>
+      <div class="span-8 append-1 last">
+        <ul>
+          <li><%= link_to "Terms and Conditions", terms_path %></li>
+          <li><%= link_to "Privacy Policy", privacy_path %></li>
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "Help", help_path %></li>
+          <li><%= link_to "Team", team_path %></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </body>
+  </html>
