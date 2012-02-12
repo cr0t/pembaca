@@ -20,3 +20,7 @@ gem "gravatar_image_tag"
 gem "SystemTimer"
 
 gem "hoptoad_notifier" # used for errbit
+
+group :development do
+  gem "capistrano"
+end
