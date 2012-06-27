@@ -24,4 +24,5 @@ gem "hoptoad_notifier" # used for errbit
 group :development do
   gem "capistrano"
   gem "capistrano_colors"
+  gem "rvm-capistrano"
 end
