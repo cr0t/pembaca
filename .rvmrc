@@ -1,1 +1,1 @@
-rvm use ree@pembaca
+rvm use ree@pembaca --create

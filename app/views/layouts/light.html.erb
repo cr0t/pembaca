@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pembaca &mdash; Simple Viewer</title>
+  <title>Pembaca - Simple Viewer</title>
   <%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
   <%= stylesheet_link_tag "blueprint/print", :media => "print" %>
   <!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %><![endif]-->
   <%= stylesheet_link_tag "blueprint/plugins/fancy-type/screen", :media => "screen, projection" %>
   <%= stylesheet_link_tag "application","simple-viewer", "mojomagnify" %>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js", "jquery.rails.js", "psticker.js", "mojomagnify.js" %>
+  <%= javascript_include_tag
+    "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js",
+    "jquery.rails.js",
+    "psticker.js",
+    "mojomagnify.js" %>
   <%= csrf_meta_tag %>
 
   <script type="text/javascript">
