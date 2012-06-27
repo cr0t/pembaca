@@ -1,14 +1,14 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require "rvm/capistrano"
+require 'bundler/capistrano'
+require 'rvm/capistrano'
+
+set :rvm_type, :system
 set :rvm_ruby_string, "ree-1.8.7-2011.03@pembaca"
 
-require "bundler/capistrano"
-
 set :application, "com.summercode.pembaca"
+set :repository,  "git@github.com:cr0t/pembaca.git"
 
 set :scm, :git
 set :branch, "master"
-set :repository,  "git@github.com:cr0t/pembaca.git"
 
 role :app, "pembaca.summercode.com"
 
